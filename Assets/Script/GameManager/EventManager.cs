@@ -19,7 +19,6 @@ namespace Script.GameManager
             playerControl.CoinCollected += Game.Manager.OnCoinCollected;
             playerControl.GamePaused += Game.Manager.OnGamePaused;
             playerControl.GamePaused += uiManager.OnGamePaused;
-            enemyLife.Died += Game.Manager.OnDied;
         }
     }
 }

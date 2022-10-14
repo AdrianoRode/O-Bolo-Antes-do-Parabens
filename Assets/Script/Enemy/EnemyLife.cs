@@ -11,9 +11,6 @@ namespace Script.Enemy
         [SerializeField]private MeshRenderer takeDamage;
         [SerializeField]private GameObject drop;
 
-        public delegate void Die();
-        public event Die Died;
-        
         public IEnumerable ApplyDamage(int damage)
         {
             health -= damage;

@@ -128,9 +128,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f3bb015156b52143a587769d8a69c43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bullet: {fileID: 4883940760031681844, guid: d62d0bdcb2fabb1468b00020a3396bb5, type: 3}
-  localFire: {fileID: 9095477348310881148}
   weapon: {fileID: 11400000, guid: 65231027251904e47be99eeb9b562d78, type: 2}
+  bulletTrail: {fileID: -4635972368607752999, guid: 4205a22bbe2285a45b3d2ec3e7db963c, type: 3}
+  localFire: {fileID: 9095477348310881148}
 --- !u!1 &4122147708061573979
 GameObject:
   m_ObjectHideFlags: 0

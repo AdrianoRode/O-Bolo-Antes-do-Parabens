@@ -45,9 +45,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f3bb015156b52143a587769d8a69c43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bullet: {fileID: 4883940760031681844, guid: 28caf3371f563b94bb9f743d96a25a4b, type: 3}
-  localFire: {fileID: 4785998634704261250}
   weapon: {fileID: 11400000, guid: f710fc573dd4f254fa0b39b4083298bf, type: 2}
+  bulletTrail: {fileID: -4635972368607752999, guid: 4205a22bbe2285a45b3d2ec3e7db963c, type: 3}
+  localFire: {fileID: 4785998634704261250}
 --- !u!1 &4785998634143255406
 GameObject:
   m_ObjectHideFlags: 0
