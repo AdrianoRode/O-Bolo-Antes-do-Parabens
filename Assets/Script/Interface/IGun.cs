@@ -5,4 +5,6 @@ public interface IGun : IEventSystemHandler
 {
     IEnumerable Fire();
     IEnumerable Delay();
+
+    int? Ammo();
 }

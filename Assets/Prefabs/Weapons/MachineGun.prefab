@@ -412,6 +412,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f3bb015156b52143a587769d8a69c43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletTrail: {fileID: -4635972368607752999, guid: 4205a22bbe2285a45b3d2ec3e7db963c, type: 3}
-  localFire: {fileID: 4532881473807208060}
   weapon: {fileID: 11400000, guid: f2f49c0355bff6f4a811c3cd9b5a0f97, type: 2}
+  bulletTrail: {fileID: -4635972368607752999, guid: 4205a22bbe2285a45b3d2ec3e7db963c, type: 3}
+  localFire:
+  - {fileID: 4532881473807208060}

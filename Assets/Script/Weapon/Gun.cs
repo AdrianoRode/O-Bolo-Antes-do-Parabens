@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using Ez;
 using UnityEngine;
@@ -10,10 +11,15 @@ public class Gun : MonoBehaviour, IGun
     
     [Header("Bullet")]
     [SerializeField]private TrailRenderer bulletTrail;
-    [SerializeField]private Transform localFire;
+    [SerializeField]private Transform[] localFire;
     private int damage;
-    private int speed = 50;
-    
+    private UIManager uiManager;
+
+    void Awake()
+    {
+        uiManager = FindObjectOfType<UIManager>();
+    }
+
     void OnEnable()
     {
         canShoot = true;
@@ -27,21 +33,25 @@ public class Gun : MonoBehaviour, IGun
     public IEnumerable Fire()
     {
         RaycastHit hit;
-        int layerMask = 1 << 6;
+        int layerMask = 1 << 2;
         layerMask = ~layerMask;
         
-        if (canShoot)
+        if (canShoot && weapon.ammo > 0)
         {
-    
-            if (Physics.Raycast(localFire.position, localFire.TransformDirection(Vector3.forward), out hit, Mathf.Infinity, layerMask))
+            for (int i = 0; i < localFire.Length; i++)
             {
-                if (hit.transform.gameObject.CompareTag("Hitable"))
+                if (Physics.Raycast(localFire[i].position, localFire[i].TransformDirection(Vector3.forward), out hit, Mathf.Infinity, layerMask))
                 {
-                    hit.collider.gameObject.Send<IArmor>(_=>_.ApplyDamage(damage));
-                }
-                
-                TrailRenderer trail = Instantiate(bulletTrail, localFire.position, Quaternion.identity);
-                StartCoroutine(SpawnTrail(trail, hit));
+                    if (hit.transform.gameObject.CompareTag("Hitable"))
+                    {
+                        hit.collider.gameObject.Send<IArmor>(_=>_.ApplyDamage(damage));
+                    }
+                    
+                    weapon.ammo--;
+                    Debug.Log(weapon.ammo);
+                    TrailRenderer trail = Instantiate(bulletTrail, localFire[i].position, Quaternion.identity);
+                    StartCoroutine(SpawnTrail(trail, hit));
+                }  
             }
             
             canShoot = false;
@@ -54,6 +64,11 @@ public class Gun : MonoBehaviour, IGun
     {
         yield return new WaitForSeconds(weapon.cadence * Time.deltaTime);
         canShoot = true;
+    }
+
+    public int? Ammo()
+    {
+        return weapon.ammo;
     }
 
     IEnumerator SpawnTrail(TrailRenderer trail, RaycastHit hit)

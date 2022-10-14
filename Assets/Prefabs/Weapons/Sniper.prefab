@@ -302,7 +302,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weapon: {fileID: 11400000, guid: 035a344f42f58ba468b0f321388d5e22, type: 2}
   bulletTrail: {fileID: -4635972368607752999, guid: 4205a22bbe2285a45b3d2ec3e7db963c, type: 3}
-  localFire: {fileID: 3144937614494797001}
+  localFire:
+  - {fileID: 3144937614494797001}
 --- !u!1 &5755663281507403740
 GameObject:
   m_ObjectHideFlags: 0

@@ -3,26 +3,25 @@
   <component name="ChangeListManager">
     <list default="true" id="b9a1ff32-09bf-496b-adad-1325fe92a733" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.O-Bolo-Antes-do-Parab-ns/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.O-Bolo-Antes-do-Parab-ns/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Bullets.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Bullets/BulletMachineGun.prefab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Bullets/BulletMachineGun.prefab.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Bullets/BulletPistol.prefab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Bullets/BulletPistol.prefab.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Bullets/BulletShotgun.prefab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Bullets/BulletShotgun.prefab.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Bullets/BulletSniper.prefab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Bullets/BulletSniper.prefab.meta" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Items/Drop.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Items/Drop.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Shop/Viewer.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Shop/Viewer.prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Weapons/MachineGun.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Weapons/MachineGun.prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Weapons/Pistol.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Weapons/Pistol.prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Weapons/ShotGun.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Weapons/ShotGun.prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Weapons/Sniper.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Weapons/Sniper.prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/Stage1.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Stage1.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Script/Enemy/EnemyLife.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Script/Enemy/EnemyLife.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Script/GameManager/EventManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Script/GameManager/EventManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Script/Interface/IGun.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Script/Interface/IGun.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Script/Interface/IUI.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Script/Interface/IUI.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Script/Item/ItemReference.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Script/Item/ItemReference.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Script/UI/UIManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Script/UI/UIManager.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Script/Weapon/Gun.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Script/Weapon/Gun.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ScriptableObject/MachineGunSO.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/ScriptableObject/MachineGunSO.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ScriptableObject/PistolSO.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/ScriptableObject/PistolSO.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ScriptableObject/ShotGunSO.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/ScriptableObject/ShotGunSO.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ScriptableObject/SniperSO.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/ScriptableObject/SniperSO.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ScriptableObject/WeaponSO.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/ScriptableObject/WeaponSO.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/UserSettings/Layouts/CurrentMaximizeLayout.dwlt" beforeDir="false" afterPath="$PROJECT_DIR$/UserSettings/Layouts/CurrentMaximizeLayout.dwlt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserSettings/Layouts/default-2021.dwlt" beforeDir="false" afterPath="$PROJECT_DIR$/UserSettings/Layouts/default-2021.dwlt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -97,6 +96,7 @@
       <workItem from="1665707842679" duration="2573000" />
       <workItem from="1665710836869" duration="3987000" />
       <workItem from="1665715822922" duration="839000" />
+      <workItem from="1665784343123" duration="5338000" />
     </task>
     <servers />
   </component>

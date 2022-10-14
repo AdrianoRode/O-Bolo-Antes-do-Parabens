@@ -1,4 +1,5 @@
 using System.Collections;
+using Ez;
 using Script.GameManager;
 using UnityEngine;
 using TMPro;
@@ -10,6 +11,7 @@ public class UIManager : MonoBehaviour, IUI
     [SerializeField]private GameObject storeUI;
     [SerializeField]private GameObject pauseUI;
     [SerializeField]private TextMeshProUGUI coinTxt;
+    [SerializeField]private TextMeshProUGUI ammoTxt;
 
     private bool shop;
     private int value;
@@ -50,6 +52,12 @@ public class UIManager : MonoBehaviour, IUI
     public IEnumerable InputUI(bool b)
     {
         textInput.SetActive(b);
+        yield return null;
+    }
+
+    public IEnumerable TxtNewValue(int i)
+    {
+        ammoTxt.text = i.ToString();
         yield return null;
     }
 

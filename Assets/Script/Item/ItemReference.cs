@@ -13,7 +13,6 @@ namespace Script.Item
         [SerializeField]private TextMeshProUGUI ammunationText;
         [SerializeField]private Image icon;
         public WeaponSO weaponSo { get; set; }
-        private WeaponSO test;
     
         public void SetValues(WeaponSO weapon)
         {
@@ -27,9 +26,11 @@ namespace Script.Item
 
             cadenceText.text = weapon.cadence.ToString();
 
+            ammunationText.text = weapon.ammo.ToString();
+
         }
     
-        public void damageUpgrade(WeaponSO weapon)
+        public void DamageUpgrade(WeaponSO weapon)
         {
             weapon = weaponSo;
             if (Game.coins >= 10)
@@ -40,7 +41,7 @@ namespace Script.Item
             }
         }
 
-        public void cadenceUpgrade(WeaponSO weapon)
+        public void CadenceUpgrade(WeaponSO weapon)
         {
             weapon = weaponSo;
 
@@ -58,6 +59,18 @@ namespace Script.Item
                 {
                     Game.coins -= 10;
                 }
+            }
+        }
+
+        public void AmmunationUpgrade(WeaponSO weapon)
+        {
+            weapon = weaponSo;
+
+            if (Game.coins >= 10)
+            {
+                weapon.ammo += 5;
+                ammunationText.text = weapon.ammo.ToString();
+                
             }
         }
 

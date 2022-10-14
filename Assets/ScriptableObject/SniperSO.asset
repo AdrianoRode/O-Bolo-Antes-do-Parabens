@@ -16,6 +16,8 @@ MonoBehaviour:
   name: Rifle
   defaultDamage: 15
   defaultCadence: 100
+  defaultAmmo: 5
   damage: 15
   cadence: 100
+  ammo: 5
   lastCadence: 40

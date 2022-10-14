@@ -1,3 +1,4 @@
+using System;
 using Script.Enemy;
 using Script.Player;
 using UnityEngine;
@@ -20,5 +21,6 @@ namespace Script.GameManager
             playerControl.GamePaused += Game.Manager.OnGamePaused;
             playerControl.GamePaused += uiManager.OnGamePaused;
         }
+
     }
 }

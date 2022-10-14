@@ -16,6 +16,8 @@ MonoBehaviour:
   name: Pistola
   defaultDamage: 5
   defaultCadence: 40
+  defaultAmmo: 10
   damage: 5
   cadence: 40
+  ammo: 10
   lastCadence: 15
