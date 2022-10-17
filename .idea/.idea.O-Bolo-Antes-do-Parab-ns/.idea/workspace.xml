@@ -10,6 +10,7 @@
       <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Weapons/ShotGun.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Weapons/ShotGun.prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Weapons/Sniper.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Weapons/Sniper.prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/Stage1.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Stage1.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Script/GameManager/EventManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Script/GameManager/EventManager.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Script/Interface/IGun.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Script/Interface/IGun.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Script/Interface/IUI.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Script/Interface/IUI.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Script/Item/ItemReference.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Script/Item/ItemReference.cs" afterDir="false" />
@@ -20,6 +21,7 @@
       <change beforePath="$PROJECT_DIR$/Assets/ScriptableObject/ShotGunSO.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/ScriptableObject/ShotGunSO.asset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/ScriptableObject/SniperSO.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/ScriptableObject/SniperSO.asset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/ScriptableObject/WeaponSO.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/ScriptableObject/WeaponSO.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Resources/Fonts &amp; Materials/LiberationSans SDF.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Resources/Fonts &amp; Materials/LiberationSans SDF.asset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/UserSettings/Layouts/CurrentMaximizeLayout.dwlt" beforeDir="false" afterPath="$PROJECT_DIR$/UserSettings/Layouts/CurrentMaximizeLayout.dwlt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/UserSettings/Layouts/default-2021.dwlt" beforeDir="false" afterPath="$PROJECT_DIR$/UserSettings/Layouts/default-2021.dwlt" afterDir="false" />
     </list>
@@ -96,7 +98,7 @@
       <workItem from="1665707842679" duration="2573000" />
       <workItem from="1665710836869" duration="3987000" />
       <workItem from="1665715822922" duration="839000" />
-      <workItem from="1665784343123" duration="5338000" />
+      <workItem from="1665784343123" duration="6064000" />
     </task>
     <servers />
   </component>

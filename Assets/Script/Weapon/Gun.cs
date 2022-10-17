@@ -13,12 +13,6 @@ public class Gun : MonoBehaviour, IGun
     [SerializeField]private TrailRenderer bulletTrail;
     [SerializeField]private Transform[] localFire;
     private int damage;
-    private UIManager uiManager;
-
-    void Awake()
-    {
-        uiManager = FindObjectOfType<UIManager>();
-    }
 
     void OnEnable()
     {

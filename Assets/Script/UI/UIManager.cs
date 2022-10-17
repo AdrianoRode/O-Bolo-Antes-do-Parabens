@@ -1,22 +1,25 @@
 using System.Collections;
-using Ez;
 using Script.GameManager;
 using UnityEngine;
 using TMPro;
-using UnityEngine.Events;
 
 public class UIManager : MonoBehaviour, IUI
 {
+    [Header("Input Text")]
     [SerializeField]private GameObject textInput;
+    
+    [Header("Store UI")]
     [SerializeField]private GameObject storeUI;
+    
+    [Header("Configs UI")]
     [SerializeField]private GameObject pauseUI;
+    
+    [Header("HUD Values")]
     [SerializeField]private TextMeshProUGUI coinTxt;
-    [SerializeField]private TextMeshProUGUI ammoTxt;
 
     private bool shop;
     private int value;
-    private CreateMenu createMenu;
-
+    
     public static UIManager uiManager;
 
     void Awake()
@@ -25,15 +28,14 @@ public class UIManager : MonoBehaviour, IUI
         {
             uiManager = this;
         }
-        coinTxt = FindObjectOfType<TextMeshProUGUI>();
-        createMenu = FindObjectOfType<CreateMenu>();
-
+        
     }
+
     void Update()
     {
         coinTxt.text = Game.coins.ToString();
     }
-    
+
     public void CloseUI()
     {
         shop = false;
@@ -52,12 +54,6 @@ public class UIManager : MonoBehaviour, IUI
     public IEnumerable InputUI(bool b)
     {
         textInput.SetActive(b);
-        yield return null;
-    }
-
-    public IEnumerable TxtNewValue(int i)
-    {
-        ammoTxt.text = i.ToString();
         yield return null;
     }
 

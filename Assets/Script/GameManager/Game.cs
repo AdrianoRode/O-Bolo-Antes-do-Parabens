@@ -15,7 +15,6 @@ namespace Script.GameManager
         [SerializeField]private GameObject enemy;
     
         private PlayerLife player;
-        private EnemyLife enemyLife;
         private UIManager uiManager;
 
         public static int coins;
@@ -33,7 +32,6 @@ namespace Script.GameManager
         void Start()
         {
             player = FindObjectOfType<PlayerLife>();
-            enemyLife = FindObjectOfType<EnemyLife>();
             uiManager = FindObjectOfType<UIManager>();
         }
 
