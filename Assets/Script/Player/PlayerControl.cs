@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Script.Player
 {
-    public class PlayerControl : MonoBehaviour
+    public class PlayerControl: MonoBehaviour
     {
         [SerializeField]private float playerSpeed = 2.0f;
         [SerializeField]private CharacterController controller;
@@ -11,16 +11,13 @@ namespace Script.Player
         private float gravityValue = -9.81f;    
         private bool groundedPlayer;
         private bool storeAccess;
-        private UIManager ui;
         private Vector3 playerVelocity;
+        private UIManager ui;
         private Camera cam;
 
         public delegate void CoinCollect(int coin);
         public event CoinCollect CoinCollected;
-
-        public delegate void GamePause();
-        public event GamePause GamePaused;
-
+        
         void Awake()
         {
             ui = FindObjectOfType<UIManager>();
@@ -29,19 +26,11 @@ namespace Script.Player
 
         void Update()
         {
-            PausingGame();   
             StoreInteration();
+            PlayerWeapon();
             PlayerMovements();
             AimRotation();
 
-        }
-
-        void PausingGame()
-        {
-            if (Input.GetKeyDown(KeyCode.Escape))
-            {
-                GamePaused?.Invoke();
-            }
         }
         void StoreInteration()
         {
@@ -51,19 +40,26 @@ namespace Script.Player
             }
         }
 
+        void PlayerWeapon()
+        {
+            if(Input.GetMouseButton(0))
+            {
+                //O True serve para mandar a mensagem para os filhos desse gameObject!
+                gameObject.Send<IGun>(_=>_.Fire(), true);
+            }
+
+            if (Input.GetKeyDown(KeyCode.R))
+            {
+                gameObject.Send<IGun>(_=>_.Reload(), true);
+            }
+        }
         void PlayerMovements()
         {
             float horizontal = Input.GetAxis("Horizontal");
             float vertical = Input.GetAxis("Vertical");
 
             Vector3 direction = new Vector3(horizontal, gravityValue, vertical);      
-            controller.Move(direction * playerSpeed * Time.deltaTime);
-            
-            if(Input.GetMouseButton(0))
-            {
-                //O True serve para mandar a mensagem para os filhos desse gameObject!
-                gameObject.Send<IGun>(_=>_.Fire(), true);
-            }
+            controller.Move(direction * (playerSpeed * Time.deltaTime));
         }
         void AimRotation()
         {

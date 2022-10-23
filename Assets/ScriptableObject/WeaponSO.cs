@@ -8,14 +8,15 @@ public class WeaponSO : ScriptableObject
     public string name;
     
     [Header("Default Value")]
-    [SerializeField]private int defaultDamage;
-    [SerializeField]private int defaultCadence;
-    [SerializeField]private int defaultAmmo;
+    public int defaultDamage;
+    public int defaultCadence;
+    public int defaultAmmo;
     
     [Header("New Value")]
     public int damage;
     public int cadence;
     public int ammo;
+    public int maxAmmo;
 
     [Header("Last Upgrade Value")]
     public int lastCadence;

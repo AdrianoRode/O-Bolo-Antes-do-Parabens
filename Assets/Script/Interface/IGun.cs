@@ -4,7 +4,8 @@ using UnityEngine.EventSystems;
 public interface IGun : IEventSystemHandler
 {
     IEnumerable Fire();
-    IEnumerable Delay();
 
-    int? Ammo();
+    IEnumerable Reload();
+    IEnumerable Cadence();
+    
 }

@@ -19,5 +19,6 @@ MonoBehaviour:
   defaultAmmo: 10
   damage: 5
   cadence: 40
+  ammoTest: 10
   ammo: 10
   lastCadence: 15

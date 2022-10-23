@@ -1249,6 +1249,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  pauseGame:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &205217594
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7076,7 +7079,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1902351056
 Transform:
   m_ObjectHideFlags: 0
@@ -7097,6 +7100,7 @@ Transform:
   - {fileID: 1512857301}
   - {fileID: 579020495}
   - {fileID: 275725041}
+  - {fileID: 1937227275}
   - {fileID: 324032505}
   - {fileID: 743757791}
   - {fileID: 694504226}
@@ -7104,7 +7108,6 @@ Transform:
   - {fileID: 2083048563}
   - {fileID: 853652427}
   - {fileID: 1136635074}
-  - {fileID: 1937227275}
   m_Father: {fileID: 0}
   m_RootOrder: 27
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

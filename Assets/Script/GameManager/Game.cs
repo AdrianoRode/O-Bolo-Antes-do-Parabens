@@ -1,5 +1,4 @@
 using Ez;
-using Script.Enemy;
 using Script.Player;
 using Trisibo;
 using UnityEngine;
@@ -20,6 +19,7 @@ namespace Script.GameManager
         public static int coins;
         public static Game Manager;
         public UnityEvent restartGame;
+        public UnityEvent pauseGame;
 
         void Awake()
         {
@@ -42,15 +42,21 @@ namespace Script.GameManager
             {
                 SceneManager.LoadScene(sceneThingy.BuildIndex);
             }
-            
-            //var h = enemyLife.gameObject.Request<IArmor, int?>(_ => _.GetHealth());
-
-        
             //~~Código para teste, remover posteriormente!!!!~~
         
+            PausingGame();
             CheckPlayerLife();
             CheckGameState();
 
+        }
+
+        void PausingGame()
+        {
+            if (Input.GetKeyDown(KeyCode.Escape))
+            {
+                pauseGame.Invoke();
+                Time.timeScale = 0;
+            }
         }
         void CheckPlayerLife()
         {
@@ -70,11 +76,6 @@ namespace Script.GameManager
         {
             var randomSpawn = Random.Range(0, spawn.Length);
             Instantiate(enemy, spawn[randomSpawn].position, Quaternion.identity);
-        }
-
-        public void OnGamePaused()
-        {
-            Time.timeScale = 0;
         }
 
         public void OnCoinCollected(int coin)

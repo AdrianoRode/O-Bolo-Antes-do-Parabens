@@ -1,5 +1,7 @@
 using System.Collections;
+using Ez;
 using Script.GameManager;
+using Script.Weapon;
 using UnityEngine;
 using TMPro;
 
@@ -21,6 +23,7 @@ public class UIManager : MonoBehaviour, IUI
     private int value;
     
     public static UIManager uiManager;
+    private Gun gun;
 
     void Awake()
     {
@@ -28,20 +31,23 @@ public class UIManager : MonoBehaviour, IUI
         {
             uiManager = this;
         }
-        
+        Game.Manager.pauseGame.AddListener(PausingGame);
+        gun = GetComponent<Gun>();
+
     }
 
     void Update()
     {
         coinTxt.text = Game.coins.ToString();
     }
+    
 
     public void CloseUI()
     {
         shop = false;
     }
 
-    public void OnGamePaused()
+    void PausingGame()
     {
         pauseUI.SetActive(true);
     }

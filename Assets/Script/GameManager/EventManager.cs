@@ -7,7 +7,7 @@ namespace Script.GameManager
 {
     public class EventManager : MonoBehaviour
     {
-        private PlayerControl playerControl;
+        private PlayerControl playerControl; 
         private EnemyLife enemyLife;
         private UIManager uiManager;
 
@@ -18,8 +18,6 @@ namespace Script.GameManager
             uiManager = FindObjectOfType<UIManager>();
         
             playerControl.CoinCollected += Game.Manager.OnCoinCollected;
-            playerControl.GamePaused += Game.Manager.OnGamePaused;
-            playerControl.GamePaused += uiManager.OnGamePaused;
         }
 
     }
