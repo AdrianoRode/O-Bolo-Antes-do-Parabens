@@ -14,11 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   icon: {fileID: 21300000, guid: 84fbd43c51d7a1a4c8d447594c9bf6b2, type: 3}
   name: Rifle
-  defaultDamage: 15
-  defaultCadence: 100
   defaultAmmo: 5
   damage: 15
   cadence: 100
-  ammoTest: 5
   ammo: 5
+  maxAmmo: 20
   lastCadence: 40

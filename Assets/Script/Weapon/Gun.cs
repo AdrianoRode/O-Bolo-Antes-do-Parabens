@@ -14,17 +14,28 @@ namespace Script.Weapon
         [SerializeField]private TrailRenderer bulletTrail;
         [SerializeField]private Transform[] localFire;
         private int damage;
+        private UIManager uiManager;
+
+        public delegate void WeaponAmmo(WeaponSO weaponSo);
+        public event WeaponAmmo WeaponAmmoTest;
+
+        void Awake()
+        {
+            uiManager = FindObjectOfType<UIManager>();
+        }
 
         void OnEnable()
         {
             canShoot = true;
+            WeaponAmmoTest += uiManager.OnWeaponAmmoTest;
         }
     
         void Update()
         {
             damage = weapon.damage;
+            WeaponAmmoTest?.Invoke(weapon);
         }
-    
+
         public IEnumerable Fire()
         {
             RaycastHit hit;
@@ -41,7 +52,6 @@ namespace Script.Weapon
                         {
                             hit.collider.gameObject.Send<IArmor>(_=>_.ApplyDamage(damage));
                         }
-
                         weapon.ammo--;
                         TrailRenderer trail = Instantiate(bulletTrail, localFire[i].position, Quaternion.identity);
                         StartCoroutine(SpawnTrail(trail, hit));
@@ -57,12 +67,9 @@ namespace Script.Weapon
         public IEnumerable Reload()
         {
             int i = weapon.defaultAmmo - weapon.ammo;
-
-            if (weapon.maxAmmo > 0)
-            {
-                weapon.maxAmmo -= i;
-                weapon.ammo += i; 
-            }
+            i = (weapon.maxAmmo - i) >= 0 ? i : weapon.maxAmmo;
+            weapon.ammo += i;
+            weapon.maxAmmo -= i;
             yield return null;
         }
 
@@ -89,5 +96,9 @@ namespace Script.Weapon
             Destroy(trail.gameObject, trail.time);
         }
 
+        void OnDisable()
+        {
+            WeaponAmmoTest -= uiManager.OnWeaponAmmoTest;
+        }
     }
 }
