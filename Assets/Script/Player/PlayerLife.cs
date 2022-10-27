@@ -6,7 +6,7 @@ namespace Script.Player
     public class PlayerLife : MonoBehaviour, IArmor
     {
         [SerializeField]private MeshRenderer takeDamage;
-        private int health = 5;
+        private int health = 1000;
         private int shield;
         private bool isInvulnerable = false;
         public float tempoDeInvulnerabilidade = 5f;

@@ -9,9 +9,9 @@ public class WeaponSO : ScriptableObject
     
     [Header("Default Value")]
     public int defaultAmmo;
-    private int defaultDamage;
-    private int defaultCadence;
-    private int defaultMaxAmmo;
+    public int defaultDamage;
+    public int defaultCadence;
+    public int defaultMaxAmmo;
     
     [Header("New Value")]
     public int damage;

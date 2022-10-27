@@ -4,6 +4,7 @@ using Trisibo;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
+using UnityEngine.Playables;
 
 namespace Script.GameManager
 {
@@ -15,11 +16,16 @@ namespace Script.GameManager
     
         private PlayerLife player;
         private UIManager uiManager;
+        private int test;
+        private bool testBool = true;
 
         public static int coins;
         public static Game Manager;
+        public PlayableDirector cutscene;
         public UnityEvent restartGame;
         public UnityEvent pauseGame;
+        public UnityEvent cutsceneOnPlay;
+        public UnityEvent cutsceneOnStop;
 
         void Awake()
         {
@@ -58,6 +64,19 @@ namespace Script.GameManager
                 Time.timeScale = 0;
             }
         }
+
+        void PlayCutscene()
+        {
+            cutsceneOnPlay.Invoke();
+            cutscene.Play();
+            Invoke("FinishCutscene", (float)cutscene.duration);
+        }
+
+        void FinishCutscene()
+        {
+            cutsceneOnStop.Invoke();
+
+        }
         void CheckPlayerLife()
         {
             var h = player.gameObject.Request<IArmor, int?>(_ => _.GetHealth());
@@ -74,8 +93,15 @@ namespace Script.GameManager
 
         public void OnDied()
         {
+            test++;
             var randomSpawn = Random.Range(0, spawn.Length);
             Instantiate(enemy, spawn[randomSpawn].position, Quaternion.identity);
+            
+            if (test >= 10 && testBool)
+            {
+                PlayCutscene();
+                testBool = false;
+            }
         }
 
         public void OnCoinCollected(int coin)

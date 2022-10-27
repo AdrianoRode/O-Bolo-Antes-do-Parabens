@@ -11,6 +11,7 @@ namespace Script.Player
         private float gravityValue = -9.81f;    
         private bool groundedPlayer;
         private bool storeAccess;
+        private bool canControl = true;
         private Vector3 playerVelocity;
         private UIManager ui;
         private Camera cam;
@@ -26,6 +27,10 @@ namespace Script.Player
 
         void Update()
         {
+            if (!canControl)
+            {
+                return;
+            }
             StoreInteration();
             PlayerWeapon();
             PlayerMovements();
@@ -42,6 +47,7 @@ namespace Script.Player
 
         void PlayerWeapon()
         {
+            
             if(Input.GetMouseButton(0))
             {
                 //O True serve para mandar a mensagem para os filhos desse gameObject!
@@ -55,6 +61,7 @@ namespace Script.Player
         }
         void PlayerMovements()
         {
+            
             float horizontal = Input.GetAxis("Horizontal");
             float vertical = Input.GetAxis("Vertical");
 
@@ -72,6 +79,15 @@ namespace Script.Player
                 Vector3 pointToLook = cameraRay.GetPoint(rayLength);
                 transform.LookAt(new Vector3(pointToLook.x, transform.position.y, pointToLook.z));
             }
+        }
+
+        public void EnableControl()
+        {
+            canControl = true;
+        }
+        public void DisableControl()
+        {
+            canControl = false;
         }
 
         void OnTriggerEnter(Collider col)
