@@ -1,7 +1,10 @@
 using System.Collections;
 using Ez;
 using Script.GameManager;
+using Script.Player;
 using Script.Weapon;
+using ScriptableObjectArchitecture;
+using Syrinj;
 using UnityEngine;
 using TMPro;
 
@@ -19,26 +22,26 @@ public class UIManager : MonoBehaviour, IUI
     [Header("HUD Values")]
     [SerializeField]private TextMeshProUGUI coinTxt;
     [SerializeField]private TextMeshProUGUI ammoTxt;
+    [Inject]public GameManagerSO game;
 
     private bool shop;
     private int value;
     
-    public static UIManager uiManager;
-
     void Awake()
     {
-        if (uiManager == null)
-        {
-            uiManager = this;
-        }
-        Game.Manager.pauseGame.AddListener(PausingGame);
+     
+        //Game.Manager.pauseGame.AddListener(PausingGame);
     }
 
     void Update()
     {
-        coinTxt.text = Game.coins.ToString();
+        //EarnCoin();
     }
-
+    
+    public void EarnCoin()
+    {
+        coinTxt.text = game.coins.Value.ToString();
+    }
     public void OnWeaponAmmoTest(WeaponSO weapon)
     {
         ammoTxt.text = weapon.ammo.ToString() + " / " + weapon.maxAmmo.ToString();

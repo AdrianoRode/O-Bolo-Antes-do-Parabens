@@ -3,6 +3,8 @@ using System.Collections;
 using Script.GameManager;
 using UnityEngine;
 using DG.Tweening;
+using ScriptableObjectArchitecture;
+using Syrinj;
 
 namespace Script.Enemy
 {
@@ -11,20 +13,21 @@ namespace Script.Enemy
         [SerializeField]private int health = 10;
         [SerializeField]private GameObject drop;
         private Material takeDamage;
-
+        public BoolVariable isDead;
 
         void Start()
         {
             takeDamage = GetComponent<MeshRenderer>().material;
         }
-   
+
         public IEnumerable ApplyDamage(int damage)
         {
             health -= damage;
+            isDead.Value = false;
             
             if (health <= 0)
             {
-                Game.Manager.OnDied();
+                isDead.Value = true;
                 Instantiate(drop, transform.position, Quaternion.identity);
                 gameObject.SetActive(false);
             }

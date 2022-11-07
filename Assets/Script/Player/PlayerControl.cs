@@ -1,4 +1,6 @@
 using Ez;
+using ScriptableObjectArchitecture;
+using Syrinj;
 using UnityEngine;
 
 namespace Script.Player
@@ -15,10 +17,7 @@ namespace Script.Player
         private Vector3 playerVelocity;
         private UIManager ui;
         private Camera cam;
-
-        public delegate void CoinCollect(int coin);
-        public event CoinCollect CoinCollected;
-        
+  
         void Awake()
         {
             ui = FindObjectOfType<UIManager>();
@@ -31,6 +30,7 @@ namespace Script.Player
             {
                 return;
             }
+
             StoreInteration();
             PlayerWeapon();
             PlayerMovements();
@@ -97,11 +97,7 @@ namespace Script.Player
                 storeAccess = true;
                 ui.gameObject.Send<IUI>(_=>_.InputUI(true));
             }
-        
-            else if (col.gameObject.CompareTag("Collectable"))
-            {
-                CoinCollected?.Invoke(1);
-            }
+   
         }
 
         void OnTriggerExit(Collider col)

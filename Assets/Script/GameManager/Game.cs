@@ -1,6 +1,5 @@
 using Ez;
-using Script.Player;
-using Trisibo;
+using Syrinj;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
@@ -10,34 +9,20 @@ namespace Script.GameManager
 {
     public class Game : MonoBehaviour
     {
-        [SerializeField]private SceneField sceneThingy;
-        [SerializeField]private Transform[] spawn;
-        [SerializeField]private GameObject enemy;
-    
-        private PlayerLife player;
+        [Provides, SerializeField]private GameManagerSO gameSo;
+        
         private UIManager uiManager;
-        private int test;
         private bool testBool = true;
+        private int test;
 
-        public static int coins;
-        public static Game Manager;
         public PlayableDirector cutscene;
         public UnityEvent restartGame;
         public UnityEvent pauseGame;
         public UnityEvent cutsceneOnPlay;
         public UnityEvent cutsceneOnStop;
 
-        void Awake()
-        {
-            if (Manager == null)
-            {
-                Manager = this;
-            }
-        }
-
         void Start()
         {
-            player = FindObjectOfType<PlayerLife>();
             uiManager = FindObjectOfType<UIManager>();
         }
 
@@ -46,7 +31,7 @@ namespace Script.GameManager
             //~~Código para teste, remover posteriormente!!!!~~
             if(Input.GetKeyDown(KeyCode.F5))
             {
-                SceneManager.LoadScene(sceneThingy.BuildIndex);
+                SceneManager.LoadScene(gameSo.sceneThingy.BuildIndex);
             }
             //~~Código para teste, remover posteriormente!!!!~~
         
@@ -79,7 +64,7 @@ namespace Script.GameManager
         }
         void CheckPlayerLife()
         {
-            var h = player.gameObject.Request<IArmor, int?>(_ => _.GetHealth());
+            var h = gameSo.player.Value.gameObject.Request<IArmor, int?>(_ => _.GetHealth());
             if (h <= 0)
             {
                 restartGame.Invoke();
@@ -88,14 +73,14 @@ namespace Script.GameManager
     
         public void RestartLevel()
         {
-            SceneManager.LoadScene(sceneThingy.BuildIndex);
+            SceneManager.LoadScene(gameSo.sceneThingy.BuildIndex);
         }
 
-        public void OnDied()
+        public void EnemyDied()
         {
             test++;
-            var randomSpawn = Random.Range(0, spawn.Length);
-            Instantiate(enemy, spawn[randomSpawn].position, Quaternion.identity);
+            var randomSpawn = Random.Range(0, gameSo.enemySpawn.Length);
+            Instantiate(gameSo.enemy.Value, gameSo.enemySpawn[randomSpawn].Value.transform.position, Quaternion.identity);
             
             if (test >= 10 && testBool)
             {
@@ -103,12 +88,7 @@ namespace Script.GameManager
                 testBool = false;
             }
         }
-
-        public void OnCoinCollected(int coin)
-        {
-            coins += coin;
-        }
-
+        
         void CheckGameState()
         {
             var p = uiManager.gameObject.Request<IUI, bool?>(_ => _.OnShop());

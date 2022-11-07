@@ -17,7 +17,6 @@ namespace Script.GameManager
             enemyLife = FindObjectOfType<EnemyLife>();
             uiManager = FindObjectOfType<UIManager>();
         
-            playerControl.CoinCollected += Game.Manager.OnCoinCollected;
         }
 
     }

@@ -113,8 +113,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 40
-  takeDamage: {fileID: 8274137150021270240}
   drop: {fileID: 5072020217331970885, guid: 17d8ff92ac25ff84ba425c187be3c85d, type: 3}
+  isDead: {fileID: 11400000, guid: c594f8dfe3db8c248bed709e42fc8d9a, type: 2}
 --- !u!114 &8274137150021270251
 MonoBehaviour:
   m_ObjectHideFlags: 0

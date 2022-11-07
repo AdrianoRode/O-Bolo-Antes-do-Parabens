@@ -1,11 +1,13 @@
 using UnityEngine;
 using DG.Tweening;
+using ScriptableObjectArchitecture;
 
 namespace Script.Item
 {
     public class Drop : MonoBehaviour
     {
         private GameObject player;
+        public IntVariable coin;
 
         void OnEnable()
         {
@@ -23,6 +25,7 @@ namespace Script.Item
         {
             if (other.gameObject.CompareTag("Player"))
             {
+                coin.Value++;
                 gameObject.SetActive(false);
             }
         }

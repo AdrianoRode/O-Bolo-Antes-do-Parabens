@@ -1097,6 +1097,7 @@ GameObject:
   - component: {fileID: 4948852878315977199}
   - component: {fileID: 1772115624389728103}
   - component: {fileID: 4690189781682412578}
+  - component: {fileID: -3746090400712431553}
   - component: {fileID: 3791548275651098368}
   m_Layer: 5
   m_Name: Viewer
@@ -1165,6 +1166,18 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &-3746090400712431553
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5934200004326531932}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd4ecc5db53680241ac45a4dc6c3c13f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &3791548275651098368
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1182,6 +1195,7 @@ MonoBehaviour:
   cadenceText: {fileID: 5407635307338597597}
   ammunationText: {fileID: 48960685952475247}
   icon: {fileID: 3194133255089185176}
+  game: {fileID: 11400000, guid: bb43643ea183cd848960cdaf35675319, type: 2}
 --- !u!1 &6329240027307563076
 GameObject:
   m_ObjectHideFlags: 0
