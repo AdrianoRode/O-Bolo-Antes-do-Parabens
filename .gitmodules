@@ -1,3 +1,6 @@
 [submodule "syrinj"]
 	path = syrinj
 	url = https://github.com/FluidPlay/syrinj.git
+[submodule "ScriptableObject-Architecture"]
+	path = ScriptableObject-Architecture
+	url = https://github.com/FluidPlay/ScriptableObject-Architecture.git
