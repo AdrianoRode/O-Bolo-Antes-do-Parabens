@@ -1,0 +1,3 @@
+[submodule "syrinj"]
+	path = syrinj
+	url = https://github.com/FluidPlay/syrinj.git
