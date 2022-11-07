@@ -1,0 +1,13 @@
+{
+  "name": "com.fluidplay.syrinj",
+  "displayName": "Syrinj",
+  "version": "1.2.0",
+  "unity": "2021.1",
+  "description": "Lightweight dependency injection & convenience attributes for Unity.",
+  "keywords": [
+    "Dependency Injection",
+    "syrinj"
+  ],
+  "license": "MIT",
+  "category": "DI"
+}
