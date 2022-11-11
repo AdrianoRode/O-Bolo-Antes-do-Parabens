@@ -25,17 +25,12 @@ namespace Script.Enemy
         void Update()
         {
             navmesh.destination = player.transform.position;
-        
-            if (!navmesh.pathPending)
+            
+            if (Vector3.Distance(transform.position, player.transform.position) < 1f)
             {
-                if (navmesh.remainingDistance <= navmesh.stoppingDistance)
-                {
-                    if (!navmesh.hasPath || navmesh.velocity.sqrMagnitude == 0f)
-                    {
-                        playerLife.gameObject.Send<IArmor>(_ => _.ApplyDamage(1));
-                    }
-                }
+                playerLife.gameObject.Send<IArmor>(_ => _.ApplyDamage(1));
             }
+            
         }
 
     }

@@ -1,9 +1,4 @@
 using System.Collections;
-using Ez;
-using Script.GameManager;
-using Script.Player;
-using Script.Weapon;
-using ScriptableObjectArchitecture;
 using Syrinj;
 using UnityEngine;
 using TMPro;
@@ -32,11 +27,6 @@ public class UIManager : MonoBehaviour, IUI
      
         //Game.Manager.pauseGame.AddListener(PausingGame);
     }
-
-    void Update()
-    {
-        //EarnCoin();
-    }
     
     public void EarnCoin()
     {
@@ -52,7 +42,7 @@ public class UIManager : MonoBehaviour, IUI
         shop = false;
     }
 
-    void PausingGame()
+    public void PausingGame()
     {
         pauseUI.SetActive(true);
     }

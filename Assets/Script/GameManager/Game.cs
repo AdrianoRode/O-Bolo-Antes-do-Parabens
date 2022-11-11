@@ -1,4 +1,5 @@
 using Ez;
+using Script.Player;
 using Syrinj;
 using UnityEngine;
 using UnityEngine.Events;
@@ -12,6 +13,7 @@ namespace Script.GameManager
         [Provides, SerializeField]private GameManagerSO gameSo;
         
         private UIManager uiManager;
+        private PlayerLife playerLife;
         private bool testBool = true;
         private int test;
 
@@ -24,6 +26,7 @@ namespace Script.GameManager
         void Start()
         {
             uiManager = FindObjectOfType<UIManager>();
+            playerLife = FindObjectOfType<PlayerLife>();
         }
 
         void Update()
@@ -64,7 +67,8 @@ namespace Script.GameManager
         }
         void CheckPlayerLife()
         {
-            var h = gameSo.player.Value.gameObject.Request<IArmor, int?>(_ => _.GetHealth());
+            var h = playerLife.gameObject.Request<IArmor, int?>(_ => _.GetHealth());
+            
             if (h <= 0)
             {
                 restartGame.Invoke();

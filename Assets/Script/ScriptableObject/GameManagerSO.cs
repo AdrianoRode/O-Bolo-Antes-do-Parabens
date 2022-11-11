@@ -12,7 +12,6 @@ public class GameManagerSO : ScriptableObject
     public IntVariable coins;
     
     [Header("Objects values")]
-    public GameObjectVariable player;
     public GameObjectVariable enemy;
     public GameObjectVariable[] enemySpawn;
 

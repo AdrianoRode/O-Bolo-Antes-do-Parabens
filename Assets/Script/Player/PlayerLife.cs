@@ -1,16 +1,22 @@
 using System.Collections;
+using DG.Tweening;
 using UnityEngine;
 
 namespace Script.Player
 {
     public class PlayerLife : MonoBehaviour, IArmor
     {
-        [SerializeField]private MeshRenderer takeDamage;
-        private int health = 1000;
+        private Material takeDamage;
+        private int health = 3;
         private int shield;
-        private bool isInvulnerable = false;
-        public float tempoDeInvulnerabilidade = 5f;
-    
+        private bool isInvulnerable;
+        private float invulnerabilityTime = 150f;
+        
+        void Start()
+        {
+            takeDamage = GetComponent<MeshRenderer>().material;
+        }
+
         public IEnumerable ApplyDamage(int damage)
         {
             if (isInvulnerable == false)
@@ -18,17 +24,15 @@ namespace Script.Player
                 Debug.Log("Levei dano: " + health);
             
                 health -= damage;
-                takeDamage.material.color = Color.red;
-  
-                yield return new WaitForSeconds(0.7f * Time.deltaTime);
-        
-                takeDamage.material.color = Color.white;
-            
-                isInvulnerable = true;
+
+                var sequence = DOTween.Sequence();
+                /*sequence.Append(takeDamage.DOColor(Color.red, 2f * Time.deltaTime))
+                    .Append(takeDamage.DOColor(Color.clear, 2f * Time.deltaTime));*/
+                takeDamage.DOColor(Color.red, 2f * Time.deltaTime);
+                
                 StartCoroutine(Invulnerable());
             
             }
-        
             else
             {
                 yield return null;
@@ -43,8 +47,9 @@ namespace Script.Player
 
         public IEnumerator Invulnerable()
         {
-            Debug.Log("Estou invulnerável!");
-            yield return new WaitForSeconds(tempoDeInvulnerabilidade * Time.deltaTime);
+            isInvulnerable = true;
+            yield return new WaitForSeconds(invulnerabilityTime * Time.deltaTime);
+            takeDamage.DOColor(Color.white, 2f * Time.deltaTime);
             isInvulnerable = false;
         }
     }
