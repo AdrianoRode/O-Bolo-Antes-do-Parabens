@@ -8,25 +8,31 @@ public class WeaponSO : ScriptableObject
     public string name;
     
     [Header("Default Value")]
+    public int defaultMaxAmmo;
     public int defaultAmmo;
     public int defaultDamage;
     public int defaultCadence;
-    public int defaultMaxAmmo;
     
     [Header("New Value")]
+    public int maxAmmo;
+    public int ammo;
     public int damage;
     public int cadence;
-    public int ammo;
-    public int maxAmmo;
 
-    [Header("Last Upgrade Value")]
+    [Header("Last Upgrade Value")] 
+    public int lastAmmo;
+    public int lastDamage;
     public int lastCadence;
 
     private void OnEnable()
     {
+        DefaultAttributes();
+    }
+    public void DefaultAttributes()
+    {
+        maxAmmo = defaultMaxAmmo;
+        ammo = defaultAmmo;
         damage = defaultDamage;
         cadence = defaultCadence;
-        ammo = defaultAmmo;
-        maxAmmo = defaultMaxAmmo;
     }
 }

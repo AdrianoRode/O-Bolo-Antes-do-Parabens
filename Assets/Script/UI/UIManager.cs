@@ -1,4 +1,5 @@
 using System.Collections;
+using DG.Tweening;
 using Syrinj;
 using UnityEngine;
 using TMPro;
@@ -19,22 +20,38 @@ public class UIManager : MonoBehaviour, IUI
     [SerializeField]private TextMeshProUGUI ammoTxt;
     [Inject]public GameManagerSO game;
 
+    [Header("Objectives Text")] 
+    [SerializeField]private TextMeshProUGUI objectiveAccomplished;
+    [SerializeField]private TextMeshProUGUI newObjective;
+
     private bool shop;
     private int value;
-    
-    void Awake()
-    {
-     
-        //Game.Manager.pauseGame.AddListener(PausingGame);
-    }
-    
+
     public void EarnCoin()
     {
-        coinTxt.text = game.coins.Value.ToString();
+        coinTxt.text = "Moedas: " + game.coins.Value.ToString();
     }
     public void OnWeaponAmmoTest(WeaponSO weapon)
     {
         ammoTxt.text = weapon.ammo.ToString() + " / " + weapon.maxAmmo.ToString();
+    }
+
+    public void ObjectiveAccomplished()
+    {
+        var objectiveFinished = objectiveAccomplished.transform;
+        var anotherObjective = newObjective.transform;
+        var sequence = DOTween.Sequence();
+        
+        sequence.Append(objectiveFinished.DOLocalMoveY(480f, 150f * Time.deltaTime).SetEase(Ease.OutElastic))
+            .Append(objectiveFinished.DOLocalMoveY(580f, 150f * Time.deltaTime).SetEase(Ease.InElastic))
+            .Append(anotherObjective.DOLocalMoveY(480f, 150f * Time.deltaTime).SetEase(Ease.OutElastic))
+            .Append(anotherObjective.DOLocalMoveY(580f, 150f * Time.deltaTime).SetEase(Ease.InElastic)).OnComplete(DisableObjectiveTxt);
+    }
+
+    void DisableObjectiveTxt()
+    {
+        objectiveAccomplished.gameObject.SetActive(false);
+        newObjective.gameObject.SetActive(false);
     }
 
     public void CloseUI()

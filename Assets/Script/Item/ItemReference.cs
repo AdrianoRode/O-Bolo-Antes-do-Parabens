@@ -25,11 +25,11 @@ namespace Script.Item
 
             nameText.text = weapon.name;
 
-            damageText.text = weapon.damage.ToString();
+            damageText.text = "Dano: " + weapon.damage.ToString();
 
-            cadenceText.text = weapon.cadence.ToString();
+            cadenceText.text = "Cadência de tiro: " + weapon.cadence.ToString();
 
-            ammunationText.text = weapon.ammo.ToString();
+            ammunationText.text = "Capacidade: " + weapon.maxAmmo.ToString();
 
         }
     
@@ -37,11 +37,21 @@ namespace Script.Item
         public void DamageUpgrade(WeaponSO weapon)
         {
             weapon = weaponSo;
+            
             if (game.coins.Value >= 10)
             {
                 weapon.damage += 5;
-                damageText.text = weapon.damage.ToString();
-                game.coins.Value -= 10;
+                damageText.text = "Dano: " + weapon.damage.ToString();
+                
+                if (weapon.damage > weapon.lastDamage)
+                {
+                    damageText.text = "Dano: " + weapon.lastDamage.ToString();
+                    weapon.damage = weapon.lastDamage;
+                }
+                else
+                {
+                    game.coins.Value -= 10;
+                }
             }
         }
 
@@ -52,11 +62,11 @@ namespace Script.Item
             if (game.coins.Value >= 10)
             {
                 weapon.cadence -= 5;
-                cadenceText.text = weapon.cadence.ToString();
+                cadenceText.text = "Cadência de tiro: " + weapon.cadence.ToString();
             
                 if (weapon.cadence < weapon.lastCadence)
                 {
-                    cadenceText.text = weapon.lastCadence.ToString();
+                    cadenceText.text = "Cadência de tiro: " + weapon.lastCadence.ToString();
                     weapon.cadence = weapon.lastCadence;
                 }
                 else
@@ -72,9 +82,18 @@ namespace Script.Item
 
             if (game.coins.Value >= 10)
             {
-                weapon.ammo += 5;
-                ammunationText.text = weapon.ammo.ToString();
-                
+                weapon.maxAmmo += 5;
+                ammunationText.text = "Capacidade: " + weapon.maxAmmo.ToString();
+
+                if (weapon.maxAmmo > weapon.lastAmmo)
+                {
+                    ammunationText.text = "Capacidade: " + weapon.lastAmmo.ToString();
+                    weapon.maxAmmo = weapon.lastAmmo;
+                }
+                else
+                {
+                    game.coins.Value -= 10;
+                }
             }
         }
 

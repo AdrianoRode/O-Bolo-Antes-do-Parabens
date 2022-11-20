@@ -10,7 +10,7 @@ namespace Script.Enemy
         private GameObject player;
         private NavMeshAgent navmesh;
         private PlayerLife playerLife;
-    
+
         void Awake()
         {
             navmesh = GetComponent<NavMeshAgent>();
@@ -24,13 +24,20 @@ namespace Script.Enemy
     
         void Update()
         {
+            MoveTowardPlayer();
+            AttackingPlayer();
+        }
+        void MoveTowardPlayer()
+        {
             navmesh.destination = player.transform.position;
-            
+        }
+
+        void AttackingPlayer()
+        {
             if (Vector3.Distance(transform.position, player.transform.position) < 1f)
             {
                 playerLife.gameObject.Send<IArmor>(_ => _.ApplyDamage(1));
             }
-            
         }
 
     }

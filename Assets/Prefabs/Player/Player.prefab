@@ -52,7 +52,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &6366565319661354136
 Transform:
   m_ObjectHideFlags: 0
@@ -164,8 +164,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2d2762efc461f940ba8c29f80d284fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  takeDamage: {fileID: 6366565319661354150}
-  tempoDeInvulnerabilidade: 5
 --- !u!114 &6366565319661354137
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -66,10 +66,11 @@ namespace Script.Weapon
 
         public IEnumerable Reload()
         {
-            int i = weapon.defaultAmmo - weapon.ammo;
+            /*int i = weapon.defaultAmmo - weapon.ammo;
             i = (weapon.maxAmmo - i) >= 0 ? i : weapon.maxAmmo;
             weapon.ammo += i;
-            weapon.maxAmmo -= i;
+            weapon.maxAmmo -= i;*/
+            weapon.ammo = weapon.maxAmmo;
             yield return null;
         }
 

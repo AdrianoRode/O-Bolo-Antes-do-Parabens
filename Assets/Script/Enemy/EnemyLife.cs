@@ -23,7 +23,6 @@ namespace Script.Enemy
         public IEnumerable ApplyDamage(int damage)
         {
             health -= damage;
-            isDead.Value = false;
             
             if (health <= 0)
             {
@@ -31,7 +30,7 @@ namespace Script.Enemy
                 Instantiate(drop, transform.position, Quaternion.identity);
                 gameObject.SetActive(false);
             }
-
+            isDead.Value = false;
             var sequence = DOTween.Sequence();
             sequence.Append(takeDamage.DOColor(Color.red, 2f * Time.deltaTime))
                 .Append(takeDamage.DOColor(Color.white, 2f * Time.deltaTime));

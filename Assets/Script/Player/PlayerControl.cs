@@ -42,6 +42,7 @@ namespace Script.Player
             if (Input.GetKeyDown(KeyCode.F) && storeAccess)
             {
                 ui.gameObject.Send<IUI>(_ => _.OpenShop(true));
+                canControl = false;
             }
         }
 

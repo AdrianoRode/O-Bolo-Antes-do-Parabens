@@ -1,5 +1,6 @@
 using Ez;
 using Script.Player;
+using ScriptableObjectArchitecture;
 using Syrinj;
 using UnityEngine;
 using UnityEngine.Events;
@@ -10,13 +11,13 @@ namespace Script.GameManager
 {
     public class Game : MonoBehaviour
     {
-        [Provides, SerializeField]private GameManagerSO gameSo;
-        
+        private bool objectiveCompleted = false;
+        private bool cutsceneStillNotPlayed = true;
+        private int enemiesDied;
         private UIManager uiManager;
         private PlayerLife playerLife;
-        private bool testBool = true;
-        private int test;
 
+        [Provides, SerializeField] private GameManagerSO gameSo;
         public PlayableDirector cutscene;
         public UnityEvent restartGame;
         public UnityEvent pauseGame;
@@ -35,6 +36,8 @@ namespace Script.GameManager
             if(Input.GetKeyDown(KeyCode.F5))
             {
                 SceneManager.LoadScene(gameSo.sceneThingy.BuildIndex);
+                gameSo.coins.Value = gameSo.coins.DefaultValue;
+                gameSo.objectiveLogic.Value = gameSo.objectiveLogic.DefaultValue;
             }
             //~~Código para teste, remover posteriormente!!!!~~
         
@@ -78,18 +81,36 @@ namespace Script.GameManager
         public void RestartLevel()
         {
             SceneManager.LoadScene(gameSo.sceneThingy.BuildIndex);
+            gameSo.coins.Value = gameSo.coins.DefaultValue;
+
+        }
+
+        public void ObjectiveCompleted()
+        {
+            objectiveCompleted = true;
         }
 
         public void EnemyDied()
         {
-            test++;
-            var randomSpawn = Random.Range(0, gameSo.enemySpawn.Length);
-            Instantiate(gameSo.enemy.Value, gameSo.enemySpawn[randomSpawn].Value.transform.position, Quaternion.identity);
-            
-            if (test >= 10 && testBool)
+            if (gameSo.enemyDied.Value)
             {
-                PlayCutscene();
-                testBool = false;
+                if (!objectiveCompleted)
+                {
+                    var randomSpawn = Random.Range(0, gameSo.enemySpawn.Length);
+                    Instantiate(gameSo.enemy.Value, gameSo.enemySpawn[randomSpawn].Value.transform.position, Quaternion.identity);
+                }
+                else
+                {
+                    enemiesDied++;
+                    
+                    if (enemiesDied >= 16 && cutsceneStillNotPlayed)
+                    {
+                        PlayCutscene();
+                        cutsceneStillNotPlayed = false;
+                    }
+                }
+                
+                
             }
         }
         
