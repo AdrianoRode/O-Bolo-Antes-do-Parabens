@@ -11,13 +11,13 @@ namespace Script.GameManager
 {
     public class Game : MonoBehaviour
     {
-        private bool objectiveCompleted = false;
+        private bool objectiveCompleted;
         private bool cutsceneStillNotPlayed = true;
         private int enemiesDied;
         private UIManager uiManager;
         private PlayerLife playerLife;
-
-        [Provides, SerializeField] private GameManagerSO gameSo;
+        [Provides, SerializeField]private GameManagerSO gameSo;
+        
         public PlayableDirector cutscene;
         public UnityEvent restartGame;
         public UnityEvent pauseGame;
@@ -82,7 +82,6 @@ namespace Script.GameManager
         {
             SceneManager.LoadScene(gameSo.sceneThingy.BuildIndex);
             gameSo.coins.Value = gameSo.coins.DefaultValue;
-
         }
 
         public void ObjectiveCompleted()

@@ -1,13 +1,15 @@
 using System.Collections;
 using DG.Tweening;
+using ScriptableObjectArchitecture;
 using UnityEngine;
 
 namespace Script.Player
 {
     public class PlayerLife : MonoBehaviour, IArmor
     {
+        public IntVariable health;
+
         private Material takeDamage;
-        private int health = 3;
         private int shield;
         private bool isInvulnerable;
         private float invulnerabilityTime = 150f;
@@ -15,15 +17,14 @@ namespace Script.Player
         void Start()
         {
             takeDamage = GetComponent<MeshRenderer>().material;
+            health.Value = health.DefaultValue;
         }
 
         public IEnumerable ApplyDamage(int damage)
         {
             if (isInvulnerable == false)
             {
-                Debug.Log("Levei dano: " + health);
-            
-                health -= damage;
+                health.Value -= damage;
 
                 var sequence = DOTween.Sequence();
                 /*sequence.Append(takeDamage.DOColor(Color.red, 2f * Time.deltaTime))
@@ -42,7 +43,7 @@ namespace Script.Player
     
         public int? GetHealth()
         {
-            return health; 
+            return health.Value; 
         }
 
         public IEnumerator Invulnerable()

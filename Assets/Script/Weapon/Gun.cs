@@ -24,6 +24,11 @@ namespace Script.Weapon
             uiManager = FindObjectOfType<UIManager>();
         }
 
+        void Start()
+        {
+            weapon.DefaultAttributes();
+        }
+
         void OnEnable()
         {
             canShoot = true;

@@ -55,7 +55,7 @@ namespace Script.Player
                 gameObject.Send<IGun>(_=>_.Fire(), true);
             }
 
-            if (Input.GetKeyDown(KeyCode.R))
+            if (Input.GetKeyDown(KeyCode.R) && !Input.GetMouseButton(0))
             {
                 gameObject.Send<IGun>(_=>_.Reload(), true);
             }

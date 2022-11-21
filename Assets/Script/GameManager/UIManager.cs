@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using DG.Tweening;
+using Script.Player;
 using Syrinj;
 using UnityEngine;
 using TMPro;
@@ -14,18 +16,31 @@ public class UIManager : MonoBehaviour, IUI
     
     [Header("Configs UI")]
     [SerializeField]private GameObject pauseUI;
-    
-    [Header("HUD Values")]
+
+    [Header("HUD Values")] 
+    [SerializeField]private TextMeshProUGUI playerLife;
     [SerializeField]private TextMeshProUGUI coinTxt;
     [SerializeField]private TextMeshProUGUI ammoTxt;
     [Inject]public GameManagerSO game;
+    
 
     [Header("Objectives Text")] 
     [SerializeField]private TextMeshProUGUI objectiveAccomplished;
-    [SerializeField]private TextMeshProUGUI newObjective;
+    [SerializeField]private TextMeshProUGUI newObjectiveWarning;
+    [SerializeField]private TextMeshProUGUI nextObjective;
 
+    private PlayerLife pl;
     private bool shop;
     private int value;
+
+    void Start()
+    {
+        pl = FindObjectOfType<PlayerLife>();
+    }
+    public void UpdatePlayerLifeTxt()
+    {
+        playerLife.text = "Vidas: " + pl.health.Value.ToString();
+    }
 
     public void EarnCoin()
     {
@@ -39,7 +54,7 @@ public class UIManager : MonoBehaviour, IUI
     public void ObjectiveAccomplished()
     {
         var objectiveFinished = objectiveAccomplished.transform;
-        var anotherObjective = newObjective.transform;
+        var anotherObjective = newObjectiveWarning.transform;
         var sequence = DOTween.Sequence();
         
         sequence.Append(objectiveFinished.DOLocalMoveY(480f, 150f * Time.deltaTime).SetEase(Ease.OutElastic))
@@ -50,8 +65,9 @@ public class UIManager : MonoBehaviour, IUI
 
     void DisableObjectiveTxt()
     {
+        nextObjective.text = "Objetivo: Derrote o restante dos oponentes!";
         objectiveAccomplished.gameObject.SetActive(false);
-        newObjective.gameObject.SetActive(false);
+        newObjectiveWarning.gameObject.SetActive(false);
     }
 
     public void CloseUI()
