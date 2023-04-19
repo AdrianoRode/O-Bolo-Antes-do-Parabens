@@ -23,5 +23,5 @@ MonoBehaviour:
   damage: 5
   cadence: 40
   lastAmmo: 25
-  lastDamage: 20
+  lastDamage: 10
   lastCadence: 15

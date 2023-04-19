@@ -27,4 +27,10 @@ public class Merchant : MonoBehaviour, IInventory
         }
         yield return null;
     }
+
+    public GameObject GetWeapon()
+    {
+        return null;
+    }
+    
 }

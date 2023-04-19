@@ -16,12 +16,12 @@ MonoBehaviour:
   name: Metralhadora
   defaultMaxAmmo: 30
   defaultAmmo: 30
-  defaultDamage: 10
+  defaultDamage: 5
   defaultCadence: 20
   maxAmmo: 30
   ammo: 30
-  damage: 10
+  damage: 5
   cadence: 20
   lastAmmo: 50
-  lastDamage: 20
+  lastDamage: 15
   lastCadence: 5

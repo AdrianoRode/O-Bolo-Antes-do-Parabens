@@ -5,7 +5,7 @@ using Script.Player;
 using Syrinj;
 using UnityEngine;
 using TMPro;
-
+using UnityEngine.UI;
 public class UIManager : MonoBehaviour, IUI
 {
     [Header("Input Text")]
@@ -21,6 +21,7 @@ public class UIManager : MonoBehaviour, IUI
     [SerializeField]private TextMeshProUGUI playerLife;
     [SerializeField]private TextMeshProUGUI coinTxt;
     [SerializeField]private TextMeshProUGUI ammoTxt;
+    [SerializeField]private Image weaponIcon;
     [Inject]public GameManagerSO game;
     
 
@@ -36,6 +37,8 @@ public class UIManager : MonoBehaviour, IUI
     void Start()
     {
         pl = FindObjectOfType<PlayerLife>();
+        UpdatePlayerLifeTxt();
+        EarnCoin();
     }
     public void UpdatePlayerLifeTxt()
     {
@@ -49,6 +52,7 @@ public class UIManager : MonoBehaviour, IUI
     public void OnWeaponAmmoTest(WeaponSO weapon)
     {
         ammoTxt.text = weapon.ammo.ToString() + " / " + weapon.maxAmmo.ToString();
+        weaponIcon.sprite = weapon.icon;
     }
 
     public void ObjectiveAccomplished()
@@ -57,15 +61,17 @@ public class UIManager : MonoBehaviour, IUI
         var anotherObjective = newObjectiveWarning.transform;
         var sequence = DOTween.Sequence();
         
+        nextObjective.text = "Objetivo: Derrote o restante dos oponentes!";
+
         sequence.Append(objectiveFinished.DOLocalMoveY(480f, 150f * Time.deltaTime).SetEase(Ease.OutElastic))
             .Append(objectiveFinished.DOLocalMoveY(580f, 150f * Time.deltaTime).SetEase(Ease.InElastic))
             .Append(anotherObjective.DOLocalMoveY(480f, 150f * Time.deltaTime).SetEase(Ease.OutElastic))
             .Append(anotherObjective.DOLocalMoveY(580f, 150f * Time.deltaTime).SetEase(Ease.InElastic)).OnComplete(DisableObjectiveTxt);
+        
     }
 
     void DisableObjectiveTxt()
     {
-        nextObjective.text = "Objetivo: Derrote o restante dos oponentes!";
         objectiveAccomplished.gameObject.SetActive(false);
         newObjectiveWarning.gameObject.SetActive(false);
     }

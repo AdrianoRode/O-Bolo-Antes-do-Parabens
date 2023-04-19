@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f82ec5752a42de3489ae49d17b22081d, type: 3}
   m_Name: ShotGunSO
   m_EditorClassIdentifier: 
+  weapon: {fileID: 2626289837117687285, guid: a20f9df5d74292e4788f8d68d738ffd6, type: 3}
   icon: {fileID: 21300000, guid: 93ab7c7c5bded45419dd881ba1bd84be, type: 3}
   name: Escopeta
   defaultMaxAmmo: 15
@@ -19,7 +20,7 @@ MonoBehaviour:
   defaultDamage: 5
   defaultCadence: 90
   maxAmmo: 15
-  ammo: 15
+  ammo: 9
   damage: 5
   cadence: 90
   lastAmmo: 35

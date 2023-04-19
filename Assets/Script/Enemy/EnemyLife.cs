@@ -1,17 +1,15 @@
 using System;
 using System.Collections;
-using Script.GameManager;
 using UnityEngine;
 using DG.Tweening;
 using ScriptableObjectArchitecture;
-using Syrinj;
 
 namespace Script.Enemy
 {
     public class EnemyLife : MonoBehaviour, IArmor
     {
         [SerializeField]private int health = 10;
-        [SerializeField]private GameObject drop;
+        [SerializeField]private GameObject[] drop;
         private Material takeDamage;
         public BoolVariable isDead;
 
@@ -23,11 +21,11 @@ namespace Script.Enemy
         public IEnumerable ApplyDamage(int damage)
         {
             health -= damage;
-            
+            int r = UnityEngine.Random.Range(0, drop.Length);
             if (health <= 0)
             {
                 isDead.Value = true;
-                Instantiate(drop, transform.position, Quaternion.identity);
+                Instantiate(drop[r], transform.position, Quaternion.identity);
                 gameObject.SetActive(false);
             }
             isDead.Value = false;

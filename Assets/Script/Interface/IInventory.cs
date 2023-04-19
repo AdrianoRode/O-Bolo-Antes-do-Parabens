@@ -7,4 +7,7 @@ public interface IInventory : IEventSystemHandler
     IEnumerable PickingUpItem(GameObject i);
 
     IEnumerable PickingUpWeapon(WeaponSO weaponSo);
+
+    GameObject GetWeapon();
+    
 }

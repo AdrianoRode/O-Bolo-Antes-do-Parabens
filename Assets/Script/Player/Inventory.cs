@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using Ez;
 public class Inventory : MonoBehaviour, IInventory
 {
     [Header("Weapons Inventory")]
@@ -11,41 +11,52 @@ public class Inventory : MonoBehaviour, IInventory
     [Header("Weapon Position")]
     [SerializeField]private Transform localWeapon;
 
+    private int _currentIndex = 0;
+    private int _currentWeapon = 0;
+    public GameObject actualWeapon;
+
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Alpha1))
+        float scroll = Input.GetAxis("Mouse ScrollWheel");
+
+        if(scroll > 0f)
         {
-            weapons[0].SetActive(true);
-            weapons[1].SetActive(false);
-            weapons[2].SetActive(false);
-            weapons[3].SetActive(false);
+            _currentIndex++;
         }
-        else if (Input.GetKeyDown(KeyCode.Alpha2))
+        else if (scroll < 0f)
         {
-            weapons[0].SetActive(false);
-            weapons[1].SetActive(true);
-            weapons[2].SetActive(false);
-            weapons[3].SetActive(false);
+            _currentIndex--;
         }
-        else if (Input.GetKeyDown(KeyCode.Alpha3))
+        
+        if(_currentIndex > weapons.Count - 1)
         {
-            weapons[0].SetActive(false);
-            weapons[1].SetActive(false);
-            weapons[2].SetActive(true);
-            weapons[3].SetActive(false);
+            _currentIndex = 0;
         }
-        else if (Input.GetKeyDown(KeyCode.Alpha4))
+        else if(_currentIndex < 0)
         {
-            weapons[0].SetActive(false);
-            weapons[1].SetActive(false);
-            weapons[2].SetActive(false);
-            weapons[3].SetActive(true);
+            _currentIndex = weapons.Count - 1;
         }
+        actualWeapon = weapons[_currentIndex];
+
+        for(int i = 0; i < weapons.Count; i++)
+        {
+            if(weapons[i] != actualWeapon)
+            {
+                weapons[i].SetActive(false);
+            }
+            else
+            {
+                weapons[i].SetActive(true);
+            }
+        }
+
     }
     public IEnumerable PickingUpItem(GameObject i)
     {
         pickUp.Add(i);
         
+        int index = pickUp.IndexOf(i);
+        _currentWeapon = index;
         var playerpos = new Vector3(localWeapon.position.x, localWeapon.position.y, localWeapon.position.z);
         
         GameObject go = Instantiate(i, playerpos, transform.localRotation) as GameObject;
@@ -63,5 +74,18 @@ public class Inventory : MonoBehaviour, IInventory
     {
         yield return null;
     }
-     
+
+    public IEnumerable Teste(GameObject f)
+    {
+        yield return null;
+    }
+    
+    public GameObject GetWeapon()
+    {
+        //Destroy(actualWeapon);
+        weapons.Remove(actualWeapon);
+        actualWeapon.SetActive(false);
+        return actualWeapon;
+    }
+
 }

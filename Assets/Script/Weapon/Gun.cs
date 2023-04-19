@@ -53,7 +53,7 @@ namespace Script.Weapon
                 {
                     if (Physics.Raycast(localFire[i].position, localFire[i].TransformDirection(Vector3.forward), out hit, Mathf.Infinity, layerMask))
                     {
-                        if (hit.transform.gameObject.CompareTag("Hitable"))
+                        if (hit.transform.gameObject.CompareTag("Hitable") || hit.transform.gameObject.CompareTag("Player"))
                         {
                             hit.collider.gameObject.Send<IArmor>(_=>_.ApplyDamage(damage));
                         }
@@ -66,16 +66,26 @@ namespace Script.Weapon
                 canShoot = false;
                 StartCoroutine(Cadence().GetEnumerator());
             }
+
+            if(weapon.ammo <= 0)
+            {
+                StartCoroutine(Reload().GetEnumerator());
+            }
             yield return null;
         }
 
         public IEnumerable Reload()
         {
-            /*int i = weapon.defaultAmmo - weapon.ammo;
-            i = (weapon.maxAmmo - i) >= 0 ? i : weapon.maxAmmo;
+            yield return new WaitForSeconds(100 * Time.deltaTime);
+
+            int i = weapon.defaultAmmo - weapon.ammo;
+            if(weapon.maxAmmo - i < 0)
+            {
+                i = weapon.maxAmmo;
+            }
             weapon.ammo += i;
-            weapon.maxAmmo -= i;*/
-            weapon.ammo = weapon.maxAmmo;
+            weapon.maxAmmo -= i;
+            
             yield return null;
         }
 

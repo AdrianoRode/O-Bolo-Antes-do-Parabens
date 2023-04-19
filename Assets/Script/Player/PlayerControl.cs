@@ -1,6 +1,4 @@
 using Ez;
-using ScriptableObjectArchitecture;
-using Syrinj;
 using UnityEngine;
 
 namespace Script.Player
@@ -17,15 +15,25 @@ namespace Script.Player
         private Vector3 playerVelocity;
         private UIManager ui;
         private Camera cam;
-  
+
         void Awake()
         {
             ui = FindObjectOfType<UIManager>();
             cam = FindObjectOfType<Camera>();
         }
-
+        
+        void FixedUpdate()
+        {
+            if (!canControl)
+            {
+                return;
+            }
+            
+            AimRotation();
+        }
         void Update()
         {
+
             if (!canControl)
             {
                 return;
@@ -34,8 +42,6 @@ namespace Script.Player
             StoreInteration();
             PlayerWeapon();
             PlayerMovements();
-            AimRotation();
-
         }
         void StoreInteration()
         {
@@ -62,17 +68,27 @@ namespace Script.Player
         }
         void PlayerMovements()
         {
-            
+              
             float horizontal = Input.GetAxis("Horizontal");
             float vertical = Input.GetAxis("Vertical");
 
-            Vector3 direction = new Vector3(horizontal, gravityValue, vertical);      
+            Vector3 direction = new Vector3(horizontal, gravityValue, vertical);
+
+            if(horizontal > 0 && Input.GetKey(KeyCode.LeftShift) || vertical > 0 && Input.GetKey(KeyCode.LeftShift))
+            {
+                controller.Move(direction * ((playerSpeed + 0.1f) * Time.deltaTime));
+            }
+
+            else if(horizontal < 0 && Input.GetKey(KeyCode.LeftShift) || vertical < 0 && Input.GetKey(KeyCode.LeftShift))
+            {
+                controller.Move(direction * ((playerSpeed + 0.1f) * Time.deltaTime));
+            }     
             controller.Move(direction * (playerSpeed * Time.deltaTime));
         }
         void AimRotation()
-        {
+        {    
             Ray cameraRay = cam.ScreenPointToRay(Input.mousePosition);
-            Plane groundPlane = new Plane(Vector3.up, Vector3.zero);
+            Plane groundPlane = new Plane(Vector3.up, transform.position);
             float rayLength;
 
             if (groundPlane.Raycast(cameraRay, out rayLength))
@@ -80,8 +96,8 @@ namespace Script.Player
                 Vector3 pointToLook = cameraRay.GetPoint(rayLength);
                 transform.LookAt(new Vector3(pointToLook.x, transform.position.y, pointToLook.z));
             }
+          
         }
-
         public void EnableControl()
         {
             canControl = true;

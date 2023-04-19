@@ -17,17 +17,24 @@ namespace Script.GameManager
         private UIManager uiManager;
         private PlayerLife playerLife;
         [Provides, SerializeField]private GameManagerSO gameSo;
-        
         public PlayableDirector cutscene;
         public UnityEvent restartGame;
         public UnityEvent pauseGame;
         public UnityEvent cutsceneOnPlay;
         public UnityEvent cutsceneOnStop;
+        public UnityEvent TestNavmesh;
+        public GameObject[] houses;
 
         void Start()
         {
             uiManager = FindObjectOfType<UIManager>();
             playerLife = FindObjectOfType<PlayerLife>();
+
+            var r = Random.Range(0, houses.Length);
+            var position = new Vector3(-6.4f, -0.44f, 0f);
+            Instantiate(houses[r], position, Quaternion.identity);
+
+            TestNavmesh.Invoke();
         }
 
         void Update()
@@ -66,7 +73,6 @@ namespace Script.GameManager
         void FinishCutscene()
         {
             cutsceneOnStop.Invoke();
-
         }
         void CheckPlayerLife()
         {
@@ -100,9 +106,10 @@ namespace Script.GameManager
                 }
                 else
                 {
+
                     enemiesDied++;
                     
-                    if (enemiesDied >= 16 && cutsceneStillNotPlayed)
+                    if (enemiesDied >= 13 && cutsceneStillNotPlayed)
                     {
                         PlayCutscene();
                         cutsceneStillNotPlayed = false;

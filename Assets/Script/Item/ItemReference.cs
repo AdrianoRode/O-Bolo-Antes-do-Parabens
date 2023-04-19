@@ -29,7 +29,7 @@ namespace Script.Item
 
             cadenceText.text = "Cadência de tiro: " + weapon.cadence.ToString();
 
-            ammunationText.text = "Capacidade: " + weapon.maxAmmo.ToString();
+            ammunationText.text = "Capacidade: " + weapon.defaultAmmo.ToString();
 
         }
     

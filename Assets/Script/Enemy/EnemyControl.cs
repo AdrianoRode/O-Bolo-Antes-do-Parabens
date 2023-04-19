@@ -36,7 +36,7 @@ namespace Script.Enemy
         {
             if (Vector3.Distance(transform.position, player.transform.position) < 1f)
             {
-                playerLife.gameObject.Send<IArmor>(_ => _.ApplyDamage(1));
+                playerLife.gameObject.Send<IArmor>(_ => _.ApplyDamage(20));
             }
         }
 
