@@ -26,7 +26,7 @@ namespace Script.Item
             if (other.gameObject.CompareTag("Player"))
             {
                 coin.Value++;
-                gameObject.SetActive(false);
+                gameObject.SetActive(false);    
             }
         }
     }
