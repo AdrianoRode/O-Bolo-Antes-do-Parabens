@@ -3994,7 +3994,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 831386454}
   m_LocalRotation: {x: 0, y: 0.7071068, z: -0, w: -0.7071068}
-  m_LocalPosition: {x: 33.506, y: -0.06, z: -29.92}
+  m_LocalPosition: {x: 33.482983, y: -0.060000002, z: -29.86917}
   m_LocalScale: {x: 0.28489023, y: 0.28489017, z: 0.28489023}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -4370,7 +4370,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
   m_LocalRotation: {x: 0.39609927, y: 0.009988551, z: 0.004570872, w: 0.918142}
-  m_LocalPosition: {x: 32.95693, y: 18.121489, z: -47.070282}
+  m_LocalPosition: {x: 32.93391, y: 18.121487, z: -47.01945}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4547,7 +4547,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 618795232941925709, guid: 1a05f9b32dcf1e14da1c55e3f51e605f, type: 3}
       propertyPath: _data._json
-      value: '{"declarations":{"collection":{"$content":[{"name":"changingState","value":{"$content":false,"$type":"System.Boolean"},"typeHandle":{"Identification":"System.Boolean,
+      value: '{"declarations":{"Kind":"Object","collection":{"$content":[{"name":"changingState","value":{"$content":false,"$type":"System.Boolean"},"typeHandle":{"Identification":"System.Boolean,
         mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089","$version":"A"},"$version":"A"}],"$version":"A"},"$version":"A"}}'
       objectReference: {fileID: 0}
     - target: {fileID: 3586255363014022296, guid: 1a05f9b32dcf1e14da1c55e3f51e605f, type: 3}
@@ -5838,7 +5838,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1231450580}
   m_LocalRotation: {x: 0.39609927, y: 0.009988551, z: 0.004570872, w: 0.918142}
-  m_LocalPosition: {x: 32.95693, y: 18.121489, z: -47.070282}
+  m_LocalPosition: {x: 32.93391, y: 18.121487, z: -47.01945}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -12643,7 +12643,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: f460047cffedea345afe973a759d0474, type: 2}
+  - {fileID: 2100000, guid: 68148e6fc2188c442aea434905c65ad4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
