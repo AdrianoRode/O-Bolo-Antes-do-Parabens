@@ -9,14 +9,13 @@ namespace Script.Player
     {
         public IntVariable health;
 
-        private Material takeDamage;
+        public Material[] takeDamage;
         private int shield;
         private bool isInvulnerable;
         private float invulnerabilityTime = 150f;
         
         void Start()
         {
-            takeDamage = GetComponent<MeshRenderer>().material;
             health.Value = health.DefaultValue;
         }
 
@@ -27,9 +26,13 @@ namespace Script.Player
                 health.Value -= damage;
 
                 var sequence = DOTween.Sequence();
+
+                for(int i = 0; i < takeDamage.Length; i++)
+                {
+                    takeDamage[i].DOColor(Color.red, 2f * Time.deltaTime);
+                }
                 /*sequence.Append(takeDamage.DOColor(Color.red, 2f * Time.deltaTime))
                     .Append(takeDamage.DOColor(Color.clear, 2f * Time.deltaTime));*/
-                takeDamage.DOColor(Color.red, 2f * Time.deltaTime);
                 
                 StartCoroutine(Invulnerable());
             
@@ -50,7 +53,10 @@ namespace Script.Player
         {
             isInvulnerable = true;
             yield return new WaitForSeconds(invulnerabilityTime * Time.deltaTime);
-            takeDamage.DOColor(Color.white, 2f * Time.deltaTime);
+            for(int i = 0; i < takeDamage.Length; i++)
+            {
+                takeDamage[i].DOColor(Color.white, 2f * Time.deltaTime);
+            }
             isInvulnerable = false;
         }
     }

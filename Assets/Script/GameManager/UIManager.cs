@@ -51,7 +51,7 @@ public class UIManager : MonoBehaviour, IUI
     }
     public void OnWeaponAmmoTest(WeaponSO weapon)
     {
-        ammoTxt.text = weapon.ammo.ToString() + " / " + weapon.maxAmmo.ToString();
+        ammoTxt.text = weapon.ammo.ToString() + " / " + weapon.reserveAmmo.ToString();
         weaponIcon.sprite = weapon.icon;
     }
 

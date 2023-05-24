@@ -15,7 +15,6 @@ namespace Script.Weapon
         [SerializeField]private Transform[] localFire;
         private int damage;
         private UIManager uiManager;
-
         public delegate void WeaponAmmo(WeaponSO weaponSo);
         public event WeaponAmmo WeaponAmmoTest;
 
@@ -78,13 +77,13 @@ namespace Script.Weapon
         {
             yield return new WaitForSeconds(100 * Time.deltaTime);
 
-            int i = weapon.defaultAmmo - weapon.ammo;
-            if(weapon.maxAmmo - i < 0)
+            int i = weapon.maxAmmo - weapon.ammo;
+            if(weapon.reserveAmmo - i < 0)
             {
-                i = weapon.maxAmmo;
+                i = weapon.reserveAmmo;
             }
             weapon.ammo += i;
-            weapon.maxAmmo -= i;
+            weapon.reserveAmmo -= i;
             
             yield return null;
         }

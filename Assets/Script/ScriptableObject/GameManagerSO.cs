@@ -10,6 +10,8 @@ public class GameManagerSO : ScriptableObject
 
     [Header("Player status")]
     public IntVariable coins;
+    public IntVariable life;
+    public IntVariable ammo;
 
     [Header("Enemy status")] 
     public BoolVariable enemyDied;

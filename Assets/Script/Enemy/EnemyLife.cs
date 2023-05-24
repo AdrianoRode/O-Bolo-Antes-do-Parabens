@@ -3,6 +3,7 @@ using System.Collections;
 using UnityEngine;
 using DG.Tweening;
 using ScriptableObjectArchitecture;
+using UnityEngine.SceneManagement;
 
 namespace Script.Enemy
 {
@@ -12,6 +13,7 @@ namespace Script.Enemy
         [SerializeField]private GameObject[] drop;
         private Material takeDamage;
         public BoolVariable isDead;
+        public bool isBoss;
 
         void Start()
         {
@@ -27,6 +29,10 @@ namespace Script.Enemy
                 isDead.Value = true;
                 Instantiate(drop[r], transform.position, Quaternion.identity);
                 gameObject.SetActive(false);
+            }
+            if(health <= 0 && isBoss == true)
+            {
+                SceneManager.LoadScene("Stage1");
             }
             isDead.Value = false;
             var sequence = DOTween.Sequence();

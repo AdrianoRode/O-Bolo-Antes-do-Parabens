@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: -4388132359566102998}
   m_Layer: 2
   m_Name: Ammo
-  m_TagString: Collectable
+  m_TagString: Ammo
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -118,4 +118,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08154be09477e9e40b70ce1ac9c4be01, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  coin: {fileID: 11400000, guid: 96462666cda568d4792ba2d102a78f8a, type: 2}
+  coin: {fileID: 11400000, guid: 60b2f2e42856daf4da54ea79e48ebc07, type: 2}

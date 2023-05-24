@@ -9,6 +9,7 @@ TagManager:
   - Store
   - Collectable
   - Hitable
+  - Ammo
   layers:
   - Default
   - TransparentFX

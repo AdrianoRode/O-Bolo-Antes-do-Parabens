@@ -15,10 +15,12 @@ MonoBehaviour:
   icon: {fileID: 21300000, guid: 84fbd43c51d7a1a4c8d447594c9bf6b2, type: 3}
   name: Rifle
   defaultMaxAmmo: 5
+  defaultReserveAmmo: 5
   defaultAmmo: 5
   defaultDamage: 20
   defaultCadence: 100
   maxAmmo: 5
+  reserveAmmo: 5
   ammo: 5
   damage: 20
   cadence: 100

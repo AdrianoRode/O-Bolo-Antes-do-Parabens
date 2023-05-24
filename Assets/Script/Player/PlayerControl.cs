@@ -16,11 +16,17 @@ namespace Script.Player
         private Vector3 playerVelocity;
         private UIManager ui;
         private Camera cam;
+        private Animator anim;
 
         void Awake()
         {
             ui = FindObjectOfType<UIManager>();
             cam = FindObjectOfType<Camera>();
+        }
+
+        void Start()
+        {
+            anim = GetComponent<Animator>();
         }
         
         void FixedUpdate()
@@ -75,7 +81,7 @@ namespace Script.Player
 
             Vector3 direction = new Vector3(horizontal, gravityValue, vertical);
 
-            if(horizontal > 0 && Input.GetKey(KeyCode.LeftShift) || vertical > 0 && Input.GetKey(KeyCode.LeftShift))
+            /*if(horizontal > 0 && Input.GetKey(KeyCode.LeftShift) || vertical > 0 && Input.GetKey(KeyCode.LeftShift))
             {
                 controller.Move(direction * ((playerSpeed + 0.1f) * Time.deltaTime));
             }
@@ -83,8 +89,17 @@ namespace Script.Player
             else if(horizontal < 0 && Input.GetKey(KeyCode.LeftShift) || vertical < 0 && Input.GetKey(KeyCode.LeftShift))
             {
                 controller.Move(direction * ((playerSpeed + 0.1f) * Time.deltaTime));
-            }     
-            controller.Move(direction * (playerSpeed * Time.deltaTime));
+            }*/     
+
+            if(horizontal > 0 || horizontal < 0 || vertical > 0 || vertical < 0)
+            {
+                anim.SetBool("isMoving", true);
+                controller.Move(direction * (playerSpeed * Time.deltaTime));
+            }
+            else
+            {
+                anim.SetBool("isMoving", false);
+            }
         }
         void AimRotation()
         {    
@@ -115,7 +130,6 @@ namespace Script.Player
                 storeAccess = true;
                 ui.gameObject.Send<IUI>(_=>_.InputUI(true));
             }
-   
         }
 
         void OnTriggerExit(Collider col)

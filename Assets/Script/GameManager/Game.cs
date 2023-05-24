@@ -44,6 +44,7 @@ namespace Script.GameManager
             {
                 SceneManager.LoadScene(gameSo.sceneThingy.BuildIndex);
                 gameSo.coins.Value = gameSo.coins.DefaultValue;
+                gameSo.life.Value = gameSo.life.DefaultValue;
                 gameSo.objectiveLogic.Value = gameSo.objectiveLogic.DefaultValue;
             }
             //~~Código para teste, remover posteriormente!!!!~~
