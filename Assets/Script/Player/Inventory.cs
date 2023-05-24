@@ -60,7 +60,7 @@ public class Inventory : MonoBehaviour, IInventory
         var playerpos = new Vector3(localWeapon.position.x, localWeapon.position.y, localWeapon.position.z);
         
         GameObject go = Instantiate(i, playerpos, transform.localRotation) as GameObject;
-        go.transform.parent = GameObject.Find("Player").transform;
+        go.transform.parent = GameObject.Find("LocalWeapon").transform;
         weapons.Add(go);
         
         yield return null;

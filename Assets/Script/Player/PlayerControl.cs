@@ -7,6 +7,7 @@ namespace Script.Player
     {
         [SerializeField]private float playerSpeed = 2.0f;
         [SerializeField]private CharacterController controller;
+        [SerializeField]private GameObject localWeapon;
 
         private float gravityValue = -9.81f;    
         private bool groundedPlayer;
@@ -58,7 +59,7 @@ namespace Script.Player
             if(Input.GetMouseButton(0))
             {
                 //O True serve para mandar a mensagem para os filhos desse gameObject!
-                gameObject.Send<IGun>(_=>_.Fire(), true);
+                localWeapon.gameObject.Send<IGun>(_=>_.Fire(), true);
             }
 
             if (Input.GetKeyDown(KeyCode.R) && !Input.GetMouseButton(0))
