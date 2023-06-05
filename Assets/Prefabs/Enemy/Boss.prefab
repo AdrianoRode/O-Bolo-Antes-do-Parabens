@@ -12,13 +12,12 @@ GameObject:
   - component: {fileID: 6549670504603576744}
   - component: {fileID: 6549670504603576743}
   - component: {fileID: 6549670504603576742}
-  - component: {fileID: 6549670504603576746}
+  - component: {fileID: 3586255363014022296}
   - component: {fileID: 9155203770519014993}
   - component: {fileID: 6549670504603576747}
   - component: {fileID: 618795232941925709}
   - component: {fileID: 6823826081942668073}
   - component: {fileID: 5659937692747332444}
-  - component: {fileID: 3586255363014022296}
   m_Layer: 3
   m_Name: Boss
   m_TagString: Hitable
@@ -40,7 +39,7 @@ Transform:
   m_Children:
   - {fileID: 4222506648600060851}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: -89.533, z: 0}
 --- !u!33 &6549670504603576744
 MeshFilter:
@@ -100,12 +99,20 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6549670504603576741}
   m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
   m_IsTrigger: 1
+  m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 2
+  serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &6549670504603576746
+--- !u!114 &3586255363014022296
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -114,12 +121,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 6549670504603576741}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2c65a824ebffff148abfebcfd34b7e4c, type: 3}
+  m_Script: {fileID: 11500000, guid: 6c1cf90ccac6b3e46a4c98ff3618989c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 200
-  drop: {fileID: 5072020217331970885, guid: 17d8ff92ac25ff84ba425c187be3c85d, type: 3}
-  isDead: {fileID: 0}
+  teste: 1
+  target: {fileID: 0}
+  Spawn: {fileID: 0}
+  _speed: 5
+  enemy: {fileID: 2771354407603532920, guid: 4d3a3b4c192f3b24f9e809117d2b938b, type: 3}
+  candy: {fileID: 5072020217331970885, guid: 8201aa3c1f3920745916d8b91cd326ac, type: 3}
 --- !u!114 &9155203770519014993
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -169,7 +179,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _data:
-    _json: '{"declarations":{"collection":{"$content":[],"$version":"A"},"$version":"A"}}'
+    _json: '{"declarations":{"Kind":"Object","collection":{"$content":[],"$version":"A"},"$version":"A"}}'
     _objectReferences: []
 --- !u!114 &6823826081942668073
 MonoBehaviour:
@@ -189,7 +199,7 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 2869fdbb073f03c438f7528e1121342d, type: 2}
 --- !u!95 &5659937692747332444
 Animator:
-  serializedVersion: 4
+  serializedVersion: 5
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -206,23 +216,8 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &3586255363014022296
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6549670504603576741}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6c1cf90ccac6b3e46a4c98ff3618989c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  teste: 0
-  target: {fileID: 0}
-  _speed: 5
-  enemy: {fileID: 1091767916513046813, guid: 975042c45f480324298f369a1dcd37a6, type: 3}
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &7885420155408026227
 GameObject:
   m_ObjectHideFlags: 0

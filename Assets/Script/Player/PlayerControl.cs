@@ -1,9 +1,10 @@
+using System.Collections;
 using Ez;
 using UnityEngine;
 
 namespace Script.Player
 {
-    public class PlayerControl: MonoBehaviour
+    public class PlayerControl: MonoBehaviour, IDebuff
     {
         [SerializeField]private float playerSpeed = 2.0f;
         [SerializeField]private CharacterController controller;
@@ -29,15 +30,6 @@ namespace Script.Player
             anim = GetComponent<Animator>();
         }
         
-        void FixedUpdate()
-        {
-            if (!canControl)
-            {
-                return;
-            }
-            
-            AimRotation();
-        }
         void Update()
         {
 
@@ -49,6 +41,8 @@ namespace Script.Player
             StoreInteration();
             PlayerWeapon();
             PlayerMovements();
+            AimRotation();
+
         }
         void StoreInteration()
         {
@@ -90,7 +84,7 @@ namespace Script.Player
             {
                 controller.Move(direction * ((playerSpeed + 0.1f) * Time.deltaTime));
             }*/     
-
+            
             if(horizontal > 0 || horizontal < 0 || vertical > 0 || vertical < 0)
             {
                 anim.SetBool("isMoving", true);
@@ -104,7 +98,7 @@ namespace Script.Player
         void AimRotation()
         {    
             Ray cameraRay = cam.ScreenPointToRay(Input.mousePosition);
-            Plane groundPlane = new Plane(Vector3.up, transform.position);
+            Plane groundPlane = new Plane(Vector3.up, localWeapon.transform.position);
             float rayLength;
 
             if (groundPlane.Raycast(cameraRay, out rayLength))
@@ -139,6 +133,11 @@ namespace Script.Player
                 storeAccess = false;
                 ui.gameObject.Send<IUI>(_=>_.InputUI(false));
             }
+        }
+        public IEnumerable ApplyStun(bool condition)
+        {
+            canControl = condition;
+            yield return null;
         }
     }
 }

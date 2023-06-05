@@ -43,7 +43,7 @@ namespace Script.Player
             }
 
         }
-    
+
         public int? GetHealth()
         {
             return health.Value; 
