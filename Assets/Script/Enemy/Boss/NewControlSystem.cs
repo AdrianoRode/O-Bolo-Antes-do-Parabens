@@ -7,56 +7,100 @@ using Ez;
 public class NewControlSystem : MonoBehaviour
 {
     public enum States {IDLE, WALKING, ATTACKING1, ATTACKING2, ATTACKING3, ATTACKING4}
-    public States teste; 
+    public States actualState; 
     public Transform target;
     public Transform Spawn;
-    public int _speed = 100;
     public GameObject enemy;
     public GameObject candy;
     private GameObject _player;
     private NavMeshAgent _navMeshAgent;
+    private float speed = 5f;
 
     void Start()
     {
         _navMeshAgent = GetComponent<NavMeshAgent>();
         _player = GameObject.Find("Player");
+        StartCoroutine(SelectState());
     }
-
     void Update()
     {
-        var step = _speed * Time.deltaTime;
-        switch(teste)
+        _navMeshAgent.speed = speed;
+        _navMeshAgent.destination = target.position;
+
+        float nai = Vector3.Distance(transform.position, _player.transform.position);
+        Debug.Log(nai);
+    }
+
+
+    void AttackingPlayer()
+    {
+        if (Vector3.Distance(transform.position, _player.transform.position) < 3.2f)
         {
-            case States.IDLE:
-                break;
+            _player.Send<IArmor>(_ => _.ApplyDamage(20));
+        }
+    }
 
-            case States.WALKING:
-                _navMeshAgent.speed = 5f;
-                _navMeshAgent.destination = target.position;
-                break;
+    public void OnLifeCounted()
+    {
+        Debug.Log("Vida em 50% ou menos!");
+    }
 
+    IEnumerator SelectState()
+    {
+        float distanceToPlayer = Vector3.Distance(transform.position, _player.transform.position);
+        speed = 5f;
+
+        yield return new WaitForSeconds(10f);
+
+        if(distanceToPlayer > 25f)
+        {
+            Teste(States.ATTACKING1);
+        }
+
+        else if(distanceToPlayer > 10f && distanceToPlayer < 25f)
+        {
+            Teste(States.ATTACKING2);
+        }
+
+        else if(distanceToPlayer < 6f)
+        {
+            Teste(States.ATTACKING3);
+        }
+
+        else
+        {
+            StartCoroutine(SelectState());
+        }
+    }
+
+    void Teste(States seila)
+    {
+        actualState = seila;
+
+        switch(actualState)
+        {
             case States.ATTACKING1:
-                transform.Translate(Vector3.forward * 40f * Time.deltaTime);
+                speed = 0f;
+
                 StartCoroutine(Attack1());
                 break;
+
             case States.ATTACKING2:
-                _navMeshAgent.speed = 0f;
+                speed = 0f;
+
                 for(int i = 0; i < 5; i++)
                 {
                     Instantiate(enemy, Spawn.position, Quaternion.identity);
                 }
-                teste = States.WALKING;
+                StartCoroutine(Attack2());
                 break;
+
             case States.ATTACKING3:
-                _navMeshAgent.speed = 0f;
-                if(Vector3.Distance(transform.position, _player.transform.position) < 10f)
-                {
-                    _player.Send<IDebuff>(_=>_.ApplyStun(false));
-                }
-                StartCoroutine(Attack3());
-                
-                //Tia tira foto que pega em área, caso acerte o player, ele vai ficar stunnado por alguns segundos.
+                _player.Send<IDebuff>(_=>_.ApplyStun(false));
+
+                StartCoroutine(Attack3()); 
                 break;
+
             case States.ATTACKING4:
                 //Instantiate(candy, Spawn.position, Quaternion.identity);
                 //A tia pouquissimas vezes atira brigadeiros que ajudam o player.
@@ -67,22 +111,31 @@ public class NewControlSystem : MonoBehaviour
         }
     }
 
-    public void OnLifeCounted()
-    {
-        Debug.Log("Vida em 50% ou menos!");
-    }
-
     IEnumerator Attack1()
     {
-        yield return new WaitForSeconds(40f * Time.deltaTime);
-        teste = States.WALKING;
+        yield return new WaitForSeconds(2f);
+        speed = 20f;
+        yield return new WaitForSeconds(4f);
+        actualState = States.WALKING;
+
+        StartCoroutine(SelectState());
+    }
+
+    IEnumerator Attack2()
+    {
+        yield return new WaitForSeconds(4f);
+        speed = 5f;
+        actualState = States.WALKING;
+
+        StartCoroutine(SelectState());
     }
 
     IEnumerator Attack3()
     {
-        _navMeshAgent.speed = 5f;
-        yield return new WaitForSeconds(250f * Time.deltaTime);
+        yield return new WaitForSeconds(5f);
         _player.Send<IDebuff>(_=>_.ApplyStun(true));
-        teste = States.WALKING;
+        actualState = States.WALKING;
+
+        StartCoroutine(SelectState());
     }
 }

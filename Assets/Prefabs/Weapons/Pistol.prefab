@@ -50,7 +50,6 @@ MonoBehaviour:
   bulletTrail: {fileID: -4635972368607752999, guid: 4205a22bbe2285a45b3d2ec3e7db963c, type: 3}
   localFire:
   - {fileID: 4785998634704261250}
-  game: {fileID: 11400000, guid: bb43643ea183cd848960cdaf35675319, type: 2}
 --- !u!114 &-3656167607427144631
 MonoBehaviour:
   m_ObjectHideFlags: 0

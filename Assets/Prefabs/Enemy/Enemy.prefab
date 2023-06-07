@@ -123,8 +123,9 @@ MonoBehaviour:
   health: 40
   drop:
   - {fileID: 5072020217331970885, guid: 47e106bcb5be1b14b926b4e04bf7a10f, type: 3}
-  - {fileID: 5072020217331970885, guid: 17d8ff92ac25ff84ba425c187be3c85d, type: 3}
+  - {fileID: 1538865405750896437, guid: b495291758cb97c40b58382b8784fe49, type: 3}
   isDead: {fileID: 11400000, guid: c594f8dfe3db8c248bed709e42fc8d9a, type: 2}
+  isBoss: 0
 --- !u!114 &8274137150021270251
 MonoBehaviour:
   m_ObjectHideFlags: 0

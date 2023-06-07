@@ -32,7 +32,7 @@ namespace Script.GameManager
 
             var r = Random.Range(0, houses.Length);
             var position = new Vector3(-6.4f, -0.44f, 0f);
-            Instantiate(houses[r], position, Quaternion.identity);
+            Instantiate(houses[r], houses[r].transform.position, Quaternion.identity);
 
             TestNavmesh.Invoke();
         }
@@ -135,6 +135,16 @@ namespace Script.GameManager
         public void OnResume()
         {
             Time.timeScale = 1;
+        }
+
+        public void BackToMenu()
+        {
+            SceneManager.LoadScene("Menu");
+        }
+
+        public void PlayGame()
+        {
+            SceneManager.LoadScene(gameSo.sceneThingy.BuildIndex);
         }
 
         public void QuitGame()
