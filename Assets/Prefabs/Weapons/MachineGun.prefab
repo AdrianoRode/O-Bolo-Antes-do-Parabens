@@ -377,6 +377,7 @@ GameObject:
   m_Component:
   - component: {fileID: 820356426582738202}
   - component: {fileID: -9146585055925249360}
+  - component: {fileID: -8844432065705234114}
   - component: {fileID: -6409430808375003459}
   m_Layer: 0
   m_Name: MachineGun
@@ -413,11 +414,108 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f3bb015156b52143a587769d8a69c43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  shoot: {fileID: 8300000, guid: 6d6433e73fa0882429a0260791317ca8, type: 3}
   weapon: {fileID: 11400000, guid: f2f49c0355bff6f4a811c3cd9b5a0f97, type: 2}
   bulletTrail: {fileID: -4635972368607752999, guid: 4205a22bbe2285a45b3d2ec3e7db963c, type: 3}
   localFire:
   - {fileID: 4532881473807208060}
-  game: {fileID: 11400000, guid: bb43643ea183cd848960cdaf35675319, type: 2}
+  ammo: {fileID: 11400000, guid: 60b2f2e42856daf4da54ea79e48ebc07, type: 2}
+--- !u!82 &-8844432065705234114
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8772919066236901631}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 24300002, guid: 88505bd1bbfdf5743aa1101beec2fa94, type: 2}
+  m_audioClip: {fileID: 8300000, guid: 6d6433e73fa0882429a0260791317ca8, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!114 &-6409430808375003459
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -440,7 +538,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: -9146585055925249360}
         m_TargetAssemblyTypeName: Script.Weapon.Gun, Assembly-CSharp
-        m_MethodName: EarnAmmo
+        m_MethodName: OnAmmoCollected
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

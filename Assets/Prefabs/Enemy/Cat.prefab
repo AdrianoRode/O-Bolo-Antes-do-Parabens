@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 6133085768646417305}
   - component: {fileID: 5089166084234431974}
   - component: {fileID: 7818827440100050266}
+  - component: {fileID: -7250538462602019466}
   - component: {fileID: 5670161263608265404}
   m_Layer: 0
   m_Name: Cat
@@ -129,6 +130,24 @@ NavMeshAgent:
   m_BaseOffset: 0.5
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &-7250538462602019466
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2771354407603532920}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c65a824ebffff148abfebcfd34b7e4c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 500
+  drop:
+  - {fileID: 5072020217331970885, guid: 47e106bcb5be1b14b926b4e04bf7a10f, type: 3}
+  - {fileID: 1538865405750896437, guid: b495291758cb97c40b58382b8784fe49, type: 3}
+  isDead: {fileID: 11400000, guid: c594f8dfe3db8c248bed709e42fc8d9a, type: 2}
+  isBoss: 0
 --- !u!114 &5670161263608265404
 MonoBehaviour:
   m_ObjectHideFlags: 0

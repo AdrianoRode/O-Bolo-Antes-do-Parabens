@@ -21,9 +21,9 @@ public class UIManager : MonoBehaviour, IUI
     [SerializeField]private TextMeshProUGUI playerLife;
     [SerializeField]private TextMeshProUGUI coinTxt;
     [SerializeField]private TextMeshProUGUI ammoTxt;
+    [SerializeField]private TextMeshProUGUI waterTxt;
     [SerializeField]private Image weaponIcon;
     [Inject]public GameManagerSO game;
-    
 
     [Header("Objectives Text")] 
     [SerializeField]private TextMeshProUGUI objectiveAccomplished;
@@ -47,7 +47,7 @@ public class UIManager : MonoBehaviour, IUI
 
     public void EarnCoin()
     {
-        coinTxt.text = "Moedas: " + game.coins.Value.ToString();
+        coinTxt.text = "Brigadeiros: " + game.coins.Value.ToString();
     }
     public void OnWeaponAmmoTest(WeaponSO weapon)
     {
@@ -94,6 +94,19 @@ public class UIManager : MonoBehaviour, IUI
     public IEnumerable InputUI(bool b)
     {
         textInput.SetActive(b);
+        yield return null;
+    }
+
+    public IEnumerable WaterCollected(bool active)
+    {
+        waterTxt.gameObject.SetActive(active);
+
+        var water = waterTxt.transform;
+        var sequence = DOTween.Sequence();
+        waterTxt.text = "Você coletou água para a pistola!";
+
+        sequence.Append(water.DOLocalMoveY(-490f, 150f * Time.deltaTime).SetEase(Ease.OutElastic))
+            .Append(water.DOLocalMoveY(-590f, 150f * Time.deltaTime).SetEase(Ease.InElastic));
         yield return null;
     }
 

@@ -140,6 +140,7 @@ namespace Script.GameManager
         public void BackToMenu()
         {
             SceneManager.LoadScene("Menu");
+            Time.timeScale = 1;
         }
 
         public void PlayGame()

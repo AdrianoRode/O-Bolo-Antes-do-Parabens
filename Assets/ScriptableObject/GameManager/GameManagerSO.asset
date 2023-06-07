@@ -15,9 +15,10 @@ MonoBehaviour:
   sceneThingy:
     sceneAsset: {fileID: 102900000, guid: 9fc0d4010bbf28b4594072e72b8655ab, type: 3}
     required: 1
-    buildIndex: 0
+    buildIndex: 1
   coins: {fileID: 11400000, guid: 96462666cda568d4792ba2d102a78f8a, type: 2}
   life: {fileID: 11400000, guid: 82da23ac072195947b63a88e2aa7f2f7, type: 2}
+  ammo: {fileID: 11400000, guid: 60b2f2e42856daf4da54ea79e48ebc07, type: 2}
   enemyDied: {fileID: 11400000, guid: c594f8dfe3db8c248bed709e42fc8d9a, type: 2}
   objectiveLogic: {fileID: 11400000, guid: 269b866a1164bae47a14adf24ace9fda, type: 2}
   enemy: {fileID: 11400000, guid: 53ef3f97ec7a71d47981a18cd2c5650f, type: 2}

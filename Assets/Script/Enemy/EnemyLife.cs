@@ -13,7 +13,6 @@ namespace Script.Enemy
         [SerializeField]private GameObject[] drop;
         private Material takeDamage;
         public BoolVariable isDead;
-        public bool isBoss;
 
         void Start()
         {
@@ -30,10 +29,7 @@ namespace Script.Enemy
                 Instantiate(drop[r], transform.position, Quaternion.identity);
                 gameObject.SetActive(false);
             }
-            if(health <= 0 && isBoss == true)
-            {
-                SceneManager.LoadScene("Stage1");
-            }
+            
             isDead.Value = false;
             var sequence = DOTween.Sequence();
             sequence.Append(takeDamage.DOColor(Color.red, 2f * Time.deltaTime))

@@ -1,11 +1,16 @@
 using System.Collections;
 using Ez;
 using UnityEngine;
+using ScriptableObjectArchitecture;
+
 
 namespace Script.Weapon
 {
     public class Gun : MonoBehaviour, IGun
     {
+        [Header("SFX")]
+        private AudioSource audioSource;
+
         [Header("Weapon")]
         [SerializeField]private WeaponSO weapon;
         private bool canShoot = true;
@@ -15,6 +20,7 @@ namespace Script.Weapon
         [SerializeField]private Transform[] localFire;
         private int damage;
         private UIManager uiManager;
+        public IntVariable ammo;
         public delegate void WeaponAmmo(WeaponSO weaponSo);
         public event WeaponAmmo WeaponAmmoTest;
 
@@ -25,6 +31,7 @@ namespace Script.Weapon
 
         void Start()
         {
+            audioSource = GetComponent<AudioSource>();
             weapon.DefaultAttributes();
         }
 
@@ -52,6 +59,12 @@ namespace Script.Weapon
                 {
                     if (Physics.Raycast(localFire[i].position, localFire[i].TransformDirection(Vector3.forward), out hit, Mathf.Infinity, layerMask))
                     {
+                        audioSource.Play();
+                        if(gameObject.name == "WaterPistol(Clone)" && hit.collider.gameObject.name == "Cat(Clone)")
+                        {
+                            hit.collider.gameObject.Send<IArmor>(_=>_.ApplyDamage(damage * 500));
+                        }
+
                         if (hit.transform.gameObject.CompareTag("Hitable") || hit.transform.gameObject.CompareTag("Player"))
                         {
                             hit.collider.gameObject.Send<IArmor>(_=>_.ApplyDamage(damage));
@@ -71,6 +84,14 @@ namespace Script.Weapon
                 StartCoroutine(Reload().GetEnumerator());
             }
             yield return null;
+        }
+
+        public void OnAmmoCollected()
+        {
+            if(gameObject.name != "WaterPistol(Clone)")
+            {
+                weapon.reserveAmmo += ammo.Value;
+            }
         }
 
         public IEnumerable Reload()

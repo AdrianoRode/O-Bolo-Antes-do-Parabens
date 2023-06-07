@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Ez;
 public class Inventory : MonoBehaviour, IInventory
 {
     [Header("Weapons Inventory")]

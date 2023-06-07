@@ -27,8 +27,6 @@ public class NewControlSystem : MonoBehaviour
         _navMeshAgent.speed = speed;
         _navMeshAgent.destination = target.position;
 
-        float nai = Vector3.Distance(transform.position, _player.transform.position);
-        Debug.Log(nai);
     }
 
 

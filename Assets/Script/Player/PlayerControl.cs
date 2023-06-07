@@ -9,10 +9,11 @@ namespace Script.Player
         [SerializeField]private float playerSpeed = 2.0f;
         [SerializeField]private CharacterController controller;
         [SerializeField]private GameObject localWeapon;
-
+        [SerializeField]private WeaponSO waterPistol;
         private float gravityValue = -9.81f;    
         private bool groundedPlayer;
         private bool storeAccess;
+        private bool canReload;
         private bool canControl = true;
         private Vector3 playerVelocity;
         private UIManager ui;
@@ -27,6 +28,7 @@ namespace Script.Player
 
         void Start()
         {
+            Debug.Log(canControl);
             anim = GetComponent<Animator>();
         }
         
@@ -50,6 +52,12 @@ namespace Script.Player
             {
                 ui.gameObject.Send<IUI>(_ => _.OpenShop(true));
                 canControl = false;
+            }
+
+            if(Input.GetKeyDown(KeyCode.F) && canReload)
+            {
+                ui.gameObject.Send<IUI>(_=>_.WaterCollected(true));
+                waterPistol.reserveAmmo += 1;
             }
         }
 
@@ -124,6 +132,12 @@ namespace Script.Player
                 storeAccess = true;
                 ui.gameObject.Send<IUI>(_=>_.InputUI(true));
             }
+
+            if(col.gameObject.CompareTag("Sink"))
+            {
+                canReload = true;
+                ui.gameObject.Send<IUI>(_=>_.InputUI(true));
+            }
         }
 
         void OnTriggerExit(Collider col)
@@ -131,6 +145,12 @@ namespace Script.Player
             if (col.gameObject.CompareTag("Store"))
             {
                 storeAccess = false;
+                ui.gameObject.Send<IUI>(_=>_.InputUI(false));
+            }
+
+            else if(col.gameObject.CompareTag("Sink"))
+            {
+                canReload = false;
                 ui.gameObject.Send<IUI>(_=>_.InputUI(false));
             }
         }
