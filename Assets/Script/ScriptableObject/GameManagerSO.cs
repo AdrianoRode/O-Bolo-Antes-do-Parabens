@@ -20,7 +20,7 @@ public class GameManagerSO : ScriptableObject
     public BoolVariable objectiveLogic;
 
     [Header("Objects values")]
-    public GameObjectVariable enemy;
+    public GameObjectVariable[] enemy;
     public GameObjectVariable[] enemySpawn;
 
 }

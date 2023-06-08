@@ -20,9 +20,9 @@ MonoBehaviour:
   defaultDamage: 1
   defaultCadence: 40
   maxAmmo: 10
-  reserveAmmo: 10
+  reserveAmmo: 18
   ammo: 10
-  damage: 5
+  damage: 1
   cadence: 40
   lastAmmo: 10
   lastDamage: 5

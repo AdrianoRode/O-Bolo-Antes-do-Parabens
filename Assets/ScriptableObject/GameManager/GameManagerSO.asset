@@ -21,7 +21,11 @@ MonoBehaviour:
   ammo: {fileID: 11400000, guid: 60b2f2e42856daf4da54ea79e48ebc07, type: 2}
   enemyDied: {fileID: 11400000, guid: c594f8dfe3db8c248bed709e42fc8d9a, type: 2}
   objectiveLogic: {fileID: 11400000, guid: 269b866a1164bae47a14adf24ace9fda, type: 2}
-  enemy: {fileID: 11400000, guid: 53ef3f97ec7a71d47981a18cd2c5650f, type: 2}
+  enemy:
+  - {fileID: 11400000, guid: 4c3d180218fe46c4695bcafc1f6ac89d, type: 2}
+  - {fileID: 11400000, guid: ff21c37be21fef64c8696569362900c2, type: 2}
+  - {fileID: 11400000, guid: 651b1314b735a2a43910d0240bc67ca8, type: 2}
+  - {fileID: 11400000, guid: 53ef3f97ec7a71d47981a18cd2c5650f, type: 2}
   enemySpawn:
   - {fileID: 11400000, guid: 3a534aa94d3feb34c9590041d3baea8c, type: 2}
   - {fileID: 11400000, guid: 5e4460fa69833ce4982d846ab41e1f3b, type: 2}

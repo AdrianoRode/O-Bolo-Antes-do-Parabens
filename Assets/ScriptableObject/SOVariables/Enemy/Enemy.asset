@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: edc690a6e84028a488f0c8e94cbc98bd, type: 3}
   m_Name: Enemy
   m_EditorClassIdentifier: 
-  _value: {fileID: 8274137150021270242, guid: 1b906623137cbd846af919dc4a9008bc, type: 3}
+  _value: {fileID: 7170859154365319020, guid: 8c4d3fa154c20b043a50116fb5dba414, type: 3}
   _readOnly: 0
   _useDefaultValue: 0
   _raiseWarning: 1
@@ -22,4 +22,16 @@ MonoBehaviour:
   _defaultValue: {fileID: 0}
   _event:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 11400000, guid: 265d3bf578587f8439017b92a633ab96, type: 2}
+        m_TargetAssemblyTypeName: ScriptableObjectArchitecture.GameEventBase, ScriptableObject-Architecture
+        m_MethodName: Raise
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2

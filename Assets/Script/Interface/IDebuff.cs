@@ -3,5 +3,5 @@ using UnityEngine.EventSystems;
 
 public interface IDebuff : IEventSystemHandler
 {
-    IEnumerable ApplyStun(bool active);
+    IEnumerable ApplyStun(bool condition);
 }

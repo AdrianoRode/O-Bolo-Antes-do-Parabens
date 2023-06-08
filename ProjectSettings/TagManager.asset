@@ -11,6 +11,8 @@ TagManager:
   - Hitable
   - Ammo
   - Sink
+  - Grass
+  - Concrete
   layers:
   - Default
   - TransparentFX

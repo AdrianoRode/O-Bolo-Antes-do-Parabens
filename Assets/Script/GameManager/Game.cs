@@ -17,13 +17,15 @@ namespace Script.GameManager
         private UIManager uiManager;
         private PlayerLife playerLife;
         [Provides, SerializeField]private GameManagerSO gameSo;
-        public PlayableDirector cutscene;
+        public PlayableDirector[] cutscene;
         public UnityEvent restartGame;
         public UnityEvent pauseGame;
         public UnityEvent cutsceneOnPlay;
         public UnityEvent cutsceneOnStop;
         public UnityEvent TestNavmesh;
         public GameObject[] houses;
+
+        public Enemy.BossLife bossTest;
 
         void Start()
         {
@@ -53,6 +55,11 @@ namespace Script.GameManager
             CheckPlayerLife();
             CheckGameState();
 
+            if(bossTest.health <= 1500)
+            {
+                OnLifeCounted();
+            }
+
         }
 
         void PausingGame()
@@ -67,8 +74,16 @@ namespace Script.GameManager
         void PlayCutscene()
         {
             cutsceneOnPlay.Invoke();
-            cutscene.Play();
-            Invoke("FinishCutscene", (float)cutscene.duration);
+            cutscene[0].Play();
+            Invoke("FinishCutscene", (float)cutscene[0].duration);
+        }
+
+        public void OnLifeCounted()
+        {
+            Debug.Log("Fui chamado");
+            cutsceneOnPlay.Invoke();
+            cutscene[1].Play();
+            Invoke("FinishCutscene", (float)cutscene[1].duration);
         }
 
         void FinishCutscene()
@@ -98,12 +113,13 @@ namespace Script.GameManager
 
         public void EnemyDied()
         {
+            var random = Random.Range(0,3);
             if (gameSo.enemyDied.Value)
             {
                 if (!objectiveCompleted)
                 {
                     var randomSpawn = Random.Range(0, gameSo.enemySpawn.Length);
-                    Instantiate(gameSo.enemy.Value, gameSo.enemySpawn[randomSpawn].Value.transform.position, Quaternion.identity);
+                    Instantiate(gameSo.enemy[random].Value, gameSo.enemySpawn[randomSpawn].Value.transform.position, Quaternion.identity);
                 }
                 else
                 {

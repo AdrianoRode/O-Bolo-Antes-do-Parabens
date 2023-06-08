@@ -10,15 +10,22 @@ namespace Script.Player
         [SerializeField]private CharacterController controller;
         [SerializeField]private GameObject localWeapon;
         [SerializeField]private WeaponSO waterPistol;
+        [SerializeField]private AudioSource walkSound;
+        [SerializeField]private AudioClip[] walkGrass;
+        [SerializeField]private AudioClip[] walkConcrete;
+
         private float gravityValue = -9.81f;    
         private bool groundedPlayer;
         private bool storeAccess;
         private bool canReload;
         private bool canControl = true;
+
+        private string ground = "";
         private Vector3 playerVelocity;
         private UIManager ui;
         private Camera cam;
         private Animator anim;
+
 
         void Awake()
         {
@@ -28,13 +35,11 @@ namespace Script.Player
 
         void Start()
         {
-            Debug.Log(canControl);
             anim = GetComponent<Animator>();
         }
         
         void Update()
         {
-
             if (!canControl)
             {
                 return;
@@ -103,6 +108,20 @@ namespace Script.Player
                 anim.SetBool("isMoving", false);
             }
         }
+
+        public void WalkSound()
+        {
+            if(ground == "Grass")
+            {
+                walkSound.PlayOneShot(walkGrass[Random.Range(0, walkGrass.Length)]);
+            }
+
+            else if(ground == "Concrete")
+            {
+                walkSound.PlayOneShot(walkConcrete[Random.Range(0, walkConcrete.Length)]);
+            }
+            
+        }
         void AimRotation()
         {    
             Ray cameraRay = cam.ScreenPointToRay(Input.mousePosition);
@@ -133,11 +152,12 @@ namespace Script.Player
                 ui.gameObject.Send<IUI>(_=>_.InputUI(true));
             }
 
-            if(col.gameObject.CompareTag("Sink"))
+            else if(col.gameObject.CompareTag("Sink"))
             {
                 canReload = true;
                 ui.gameObject.Send<IUI>(_=>_.InputUI(true));
             }
+        
         }
 
         void OnTriggerExit(Collider col)
@@ -154,10 +174,23 @@ namespace Script.Player
                 ui.gameObject.Send<IUI>(_=>_.InputUI(false));
             }
         }
+        void OnControllerColliderHit(ControllerColliderHit col)
+        {
+             if(col.gameObject.CompareTag("Grass"))
+            {
+                ground = "Grass";
+            }
+
+            else if(col.gameObject.CompareTag("Concrete"))
+            {
+                ground = "Concrete";
+            } 
+        }
         public IEnumerable ApplyStun(bool condition)
         {
             canControl = condition;
             yield return null;
         }
+
     }
 }

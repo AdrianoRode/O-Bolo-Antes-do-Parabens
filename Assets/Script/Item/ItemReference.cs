@@ -45,7 +45,7 @@ namespace Script.Item
                 
                 if (weapon.damage > weapon.lastDamage)
                 {
-                    damageText.text = "Dano: " + weapon.lastDamage.ToString();
+                    damageText.text = "Dano maximizado!: " + weapon.lastDamage.ToString();
                     weapon.damage = weapon.lastDamage;
                 }
                 else
@@ -64,9 +64,9 @@ namespace Script.Item
                 weapon.cadence -= 5;
                 cadenceText.text = "Cadência de tiro: " + weapon.cadence.ToString();
             
-                if (weapon.cadence < weapon.lastCadence)
+                if (weapon.cadence <= weapon.lastCadence)
                 {
-                    cadenceText.text = "Cadência de tiro: " + weapon.lastCadence.ToString();
+                    cadenceText.text = "Cadência maximizada!: " + weapon.lastCadence.ToString();
                     weapon.cadence = weapon.lastCadence;
                 }
                 else
@@ -85,9 +85,9 @@ namespace Script.Item
                 weapon.maxAmmo += 5;
                 ammunationText.text = "Capacidade: " + weapon.maxAmmo.ToString();
 
-                if (weapon.maxAmmo > weapon.lastAmmo)
+                if (weapon.maxAmmo >= weapon.lastAmmo)
                 {
-                    ammunationText.text = "Capacidade: " + weapon.lastAmmo.ToString();
+                    ammunationText.text = "Capacidade maximizada!: " + weapon.lastAmmo.ToString();
                     weapon.maxAmmo = weapon.lastAmmo;
                 }
                 else

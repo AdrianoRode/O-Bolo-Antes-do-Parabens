@@ -9,12 +9,14 @@ namespace Script.Enemy
 {
     public class BossLife : MonoBehaviour, IArmor
     {
-        [SerializeField]private int health = 10;
+        public int health = 10;
         [SerializeField]private GameObject[] drop;
         private int life;
         private Material takeDamage;
         private NewControlSystem newControlSystem;
         public BoolVariable isDead;
+        public BoolVariable test;
+        
         public delegate void LifeCount();
         public event LifeCount LifeCounted;
         void Start()
@@ -34,15 +36,15 @@ namespace Script.Enemy
             int r = UnityEngine.Random.Range(0, drop.Length);
             if (health <= 0)
             {
-                SceneManager.LoadScene("Stage1");
+                SceneManager.LoadScene("Menu");
                 isDead.Value = true;
                 Instantiate(drop[r], transform.position, Quaternion.identity);
                 gameObject.SetActive(false);
             }
 
-            if (health <= life)
+            if (health <= 1500)
             {
-                LifeCounted();
+                test.Value = true;
             }
 
             isDead.Value = false;

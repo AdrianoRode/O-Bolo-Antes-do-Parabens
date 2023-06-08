@@ -10,13 +10,20 @@ namespace Script.Enemy
         private GameObject player;
         private NavMeshAgent navmesh;
         private PlayerLife playerLife;
+        private Animator anim;
 
         void Awake()
         {
             navmesh = GetComponent<NavMeshAgent>();
+            anim = GetComponent<Animator>();
             playerLife = FindObjectOfType<PlayerLife>();
         }
 
+        void OnEnable()
+        {
+            var randomMove = Random.Range(0, 3);
+            anim.SetInteger("random", randomMove);
+        }
         void Start()
         {
             player = GameObject.Find("Player");
@@ -34,11 +41,10 @@ namespace Script.Enemy
 
         void AttackingPlayer()
         {
-            if (Vector3.Distance(transform.position, player.transform.position) < 1f)
+            if (Vector3.Distance(transform.position, player.transform.position) < 2f)
             {
                 playerLife.gameObject.Send<IArmor>(_ => _.ApplyDamage(10));
             }
         }
-
     }
 }

@@ -13,6 +13,8 @@ namespace Script.Enemy
         [SerializeField]private GameObject[] drop;
         private Material takeDamage;
         public BoolVariable isDead;
+        public bool bossChild;
+        public GameObject boss;
 
         void Start()
         {
@@ -27,6 +29,12 @@ namespace Script.Enemy
             {
                 isDead.Value = true;
                 Instantiate(drop[r], transform.position, Quaternion.identity);
+                gameObject.SetActive(false);
+            }
+
+            if (health <= 0 && bossChild == true)
+            {
+                boss.SetActive(true);
                 gameObject.SetActive(false);
             }
             
