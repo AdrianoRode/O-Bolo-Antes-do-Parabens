@@ -15,14 +15,14 @@ MonoBehaviour:
   icon: {fileID: 21300000, guid: a197384c7db6e9e48ade9ffa66babca5, type: 3}
   name: Metralhadora
   defaultMaxAmmo: 30
-  defaultReserveAmmo: 1000
+  defaultReserveAmmo: 60
   defaultAmmo: 30
-  defaultDamage: 100
+  defaultDamage: 500
   defaultCadence: 20
   maxAmmo: 30
-  reserveAmmo: 963
-  ammo: 23
-  damage: 100
+  reserveAmmo: 60
+  ammo: 30
+  damage: 500
   cadence: 20
   lastAmmo: 50
   lastDamage: 15

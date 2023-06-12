@@ -11,15 +11,10 @@ namespace Script.Enemy
     {
         [SerializeField]private int health = 10;
         [SerializeField]private GameObject[] drop;
-        private Material takeDamage;
         public BoolVariable isDead;
         public bool bossChild;
         public GameObject boss;
-
-        void Start()
-        {
-            takeDamage = GetComponent<MeshRenderer>().material;
-        }
+        public Renderer renderer;
 
         public IEnumerable ApplyDamage(int damage)
         {
@@ -39,16 +34,20 @@ namespace Script.Enemy
             }
             
             isDead.Value = false;
-            var sequence = DOTween.Sequence();
-            sequence.Append(takeDamage.DOColor(Color.red, 2f * Time.deltaTime))
-                .Append(takeDamage.DOColor(Color.white, 2f * Time.deltaTime));
-  
+            renderer.material.SetColor("_BaseColor", Color.red);
+            StartCoroutine(ChangeColor());
             yield return null;
         }
 
         public int? GetHealth()
         {
             return health;
+        }
+
+        public IEnumerator ChangeColor()
+        {
+            yield return new WaitForSeconds(2f * Time.deltaTime);
+            renderer.material.SetColor("_BaseColor", Color.white);
         }
         
     }

@@ -9,9 +9,14 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8199949104798121596}
-  m_Layer: 0
+  - component: {fileID: -9072883268488962019}
+  - component: {fileID: -3874632131614358130}
+  - component: {fileID: 5823296915360245509}
+  - component: {fileID: 3860415210228500343}
+  - component: {fileID: -1151450539065393098}
+  m_Layer: 3
   m_Name: Cat
-  m_TagString: Untagged
+  m_TagString: Hitable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -33,6 +38,113 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &-9072883268488962019
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 762025161408438459}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 2.0927455, y: 3.427629, z: 2.7301238}
+  m_Center: {x: 0.08253584, y: 1.7538143, z: -0.239491}
+--- !u!114 &-3874632131614358130
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 762025161408438459}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c65a824ebffff148abfebcfd34b7e4c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 300
+  drop:
+  - {fileID: 5072020217331970885, guid: 47e106bcb5be1b14b926b4e04bf7a10f, type: 3}
+  - {fileID: 1538865405750896437, guid: b495291758cb97c40b58382b8784fe49, type: 3}
+  isDead: {fileID: 11400000, guid: c594f8dfe3db8c248bed709e42fc8d9a, type: 2}
+  bossChild: 0
+  boss: {fileID: 0}
+  renderer: {fileID: 6393505142006217143}
+--- !u!114 &5823296915360245509
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 762025161408438459}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb9a4d7076d01ed4d953194f06a270df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  walkSound: {fileID: 8812767016511366744, guid: a41d3ecda1696fa4c9f4e01522af2ebe, type: 3}
+  walkGrass:
+  - {fileID: 8300000, guid: a648bae64d9170646b4267e899b525c2, type: 3}
+  - {fileID: 8300000, guid: fbfaa2f9188346044b64ca0cdc48024d, type: 3}
+  - {fileID: 8300000, guid: 669ebe9eca8b22b41a4bff1cd9fd790e, type: 3}
+  - {fileID: 8300000, guid: c45f6ddc5de21ab479b5ee926de105d0, type: 3}
+  walkConcrete:
+  - {fileID: 8300000, guid: da3912b1e0085544a86759088858f110, type: 3}
+  - {fileID: 8300000, guid: 8b801063243e71a4fb94be990779c707, type: 3}
+  - {fileID: 8300000, guid: ec367e8750490294791fda04cb222d27, type: 3}
+  - {fileID: 8300000, guid: 32cb3899a0e41384fbcc8ee20dc425f3, type: 3}
+--- !u!195 &3860415210228500343
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 762025161408438459}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.5
+  m_Speed: 7
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0.1
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 1
+  m_BaseOffset: 0.5
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
+--- !u!95 &-1151450539065393098
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 762025161408438459}
+  m_Enabled: 1
+  m_Avatar: {fileID: 9000000, guid: fa22d9da6efb7f64caa258363078bdff, type: 3}
+  m_Controller: {fileID: 9100000, guid: d058b9cab36666a4083865b51bde7c4e, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1897939145734488446
 GameObject:
   m_ObjectHideFlags: 0
@@ -42,7 +154,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3181079814398421140}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Bone.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -74,7 +186,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1358100291333845768}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Bone.002
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -106,7 +218,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6159166978809719409}
   - component: {fileID: 6393505142006217143}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: gato
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -197,7 +309,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1957678798509985157}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Bone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -229,7 +341,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8225427107917139528}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: gato.rig
   m_TagString: Untagged
   m_Icon: {fileID: 0}

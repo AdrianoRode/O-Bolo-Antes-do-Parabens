@@ -35,13 +35,14 @@ public class Inventory : MonoBehaviour, IInventory
         {
             _currentIndex = weapons.Count - 1;
         }
-        actualWeapon = weapons[_currentIndex];
 
         for(int i = 0; i < weapons.Count; i++)
         {
             if(weapons[i] != actualWeapon)
             {
                 weapons[i].SetActive(false);
+                actualWeapon = weapons[_currentIndex];
+
             }
             else
             {

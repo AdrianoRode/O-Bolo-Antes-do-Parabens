@@ -7,12 +7,12 @@ using UnityEngine;
 public class ObjectiveLogic : MonoBehaviour, IArmor
 {
     private int health = 150;
-    private Material takeDamage;
+    private Renderer renderer;
     public BoolVariable objectiveCompleted;
 
     void Start()
     {
-        takeDamage = GetComponent<MeshRenderer>().material;
+        renderer = GetComponent<Renderer>();
     }
     public IEnumerable ApplyDamage(int damage)
     {
@@ -22,9 +22,8 @@ public class ObjectiveLogic : MonoBehaviour, IArmor
             objectiveCompleted.Value = true;
             gameObject.SetActive(false);
         }
-        var sequence = DOTween.Sequence();
-        sequence.Append(takeDamage.DOColor(Color.red, 2f * Time.deltaTime))
-            .Append(takeDamage.DOColor(takeDamage.color, 2f * Time.deltaTime));
+        renderer.material.SetColor("_BaseColor", Color.red);
+        StartCoroutine(ChangeColor());
         
         yield return null;
     }
@@ -32,5 +31,11 @@ public class ObjectiveLogic : MonoBehaviour, IArmor
     public int? GetHealth()
     {
         return health;
+    }
+
+    public IEnumerator ChangeColor()
+    {
+        yield return new WaitForSeconds(2f * Time.deltaTime);
+        renderer.material.SetColor("_BaseColor", Color.white);
     }
 }

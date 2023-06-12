@@ -24,8 +24,8 @@ namespace Script.GameManager
         public UnityEvent cutsceneOnStop;
         public UnityEvent TestNavmesh;
         public GameObject[] houses;
-
-        public Enemy.BossLife bossTest;
+        public bool bossIsAlive = false;
+        public BossLife bossLife;
 
         void Start()
         {
@@ -49,17 +49,13 @@ namespace Script.GameManager
                 gameSo.life.Value = gameSo.life.DefaultValue;
                 gameSo.objectiveLogic.Value = gameSo.objectiveLogic.DefaultValue;
             }
+
             //~~Código para teste, remover posteriormente!!!!~~
         
             PausingGame();
             CheckPlayerLife();
+            CheckBossLife();
             CheckGameState();
-
-            if(bossTest.health <= 1500)
-            {
-                OnLifeCounted();
-            }
-
         }
 
         void PausingGame()
@@ -78,14 +74,6 @@ namespace Script.GameManager
             Invoke("FinishCutscene", (float)cutscene[0].duration);
         }
 
-        public void OnLifeCounted()
-        {
-            Debug.Log("Fui chamado");
-            cutsceneOnPlay.Invoke();
-            cutscene[1].Play();
-            Invoke("FinishCutscene", (float)cutscene[1].duration);
-        }
-
         void FinishCutscene()
         {
             cutsceneOnStop.Invoke();
@@ -97,6 +85,16 @@ namespace Script.GameManager
             if (h <= 0)
             {
                 restartGame.Invoke();
+            }
+        }
+        void CheckBossLife()
+        {
+            var h = bossLife.gameObject.Request<IArmor, int?>(_=>_.GetHealth());
+            if(h <= 1500)
+            {
+                cutsceneOnPlay.Invoke();
+                cutscene[1].Play();
+                Invoke("FinishCutscene", (float)cutscene[1].duration);
             }
         }
     

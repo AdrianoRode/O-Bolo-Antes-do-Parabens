@@ -6,20 +6,26 @@ namespace Script.Player
 {
     public class PlayerControl: MonoBehaviour, IDebuff
     {
+        [Header("PlayerControl")]
         [SerializeField]private float playerSpeed = 2.0f;
         [SerializeField]private CharacterController controller;
+
+        [Header("ActualWeapon")]
         [SerializeField]private GameObject localWeapon;
+
+        [Header("WaterPistolAttributes")]
         [SerializeField]private WeaponSO waterPistol;
+
+        [Header("SoundEffect")]
         [SerializeField]private AudioSource walkSound;
         [SerializeField]private AudioClip[] walkGrass;
         [SerializeField]private AudioClip[] walkConcrete;
-
         private float gravityValue = -9.81f;    
+        private float stamina = 100f;
         private bool groundedPlayer;
         private bool storeAccess;
         private bool canReload;
         private bool canControl = true;
-
         private string ground = "";
         private Vector3 playerVelocity;
         private UIManager ui;
@@ -83,30 +89,45 @@ namespace Script.Player
         void PlayerMovements()
         {
               
-            float horizontal = Input.GetAxis("Horizontal");
-            float vertical = Input.GetAxis("Vertical");
-
-            Vector3 direction = new Vector3(horizontal, gravityValue, vertical);
-
-            /*if(horizontal > 0 && Input.GetKey(KeyCode.LeftShift) || vertical > 0 && Input.GetKey(KeyCode.LeftShift))
-            {
-                controller.Move(direction * ((playerSpeed + 0.1f) * Time.deltaTime));
-            }
-
-            else if(horizontal < 0 && Input.GetKey(KeyCode.LeftShift) || vertical < 0 && Input.GetKey(KeyCode.LeftShift))
-            {
-                controller.Move(direction * ((playerSpeed + 0.1f) * Time.deltaTime));
-            }*/     
+            float horizontalInput = Input.GetAxis("Horizontal");
+            float verticalInput = Input.GetAxis("Vertical"); 
             
-            if(horizontal > 0 || horizontal < 0 || vertical > 0 || vertical < 0)
+            Vector3 direction = new Vector3(horizontalInput, gravityValue, verticalInput);
+      
+            if(horizontalInput != 0 || verticalInput != 0)
             {
+                if(Input.GetKey(KeyCode.LeftShift))
+                {
+                    if(stamina > 0)
+                    {
+                        playerSpeed = 6f;
+                        stamina -= 25f * Time.deltaTime;
+                        anim.SetFloat("run", 1.3f);
+                    }
+
+                    else
+                    {
+                        playerSpeed = 4f;
+                        anim.SetFloat("run", 1f);
+                    }  
+                }
+
+                else
+                {
+                    playerSpeed = 4f;
+                    stamina += 5f * Time.deltaTime;
+                    anim.SetFloat("run", 1f);
+                }
                 anim.SetBool("isMoving", true);
                 controller.Move(direction * (playerSpeed * Time.deltaTime));
+                stamina = Mathf.Clamp(stamina, 0f, 100f);
+
             }
             else
             {
                 anim.SetBool("isMoving", false);
             }
+
         }
 
         public void WalkSound()
@@ -176,7 +197,7 @@ namespace Script.Player
         }
         void OnControllerColliderHit(ControllerColliderHit col)
         {
-             if(col.gameObject.CompareTag("Grass"))
+            if(col.gameObject.CompareTag("Grass"))
             {
                 ground = "Grass";
             }

@@ -5,60 +5,53 @@ using DG.Tweening;
 using ScriptableObjectArchitecture;
 using UnityEngine.SceneManagement;
 
-namespace Script.Enemy
+public class BossLife : MonoBehaviour, IArmor
 {
-    public class BossLife : MonoBehaviour, IArmor
+    public int health = 10;
+    [SerializeField]private GameObject[] drop;
+    private int life;
+    private NewControlSystem newControlSystem;
+    public BoolVariable isDead;
+    public Renderer[] renderer;   
+    public delegate void LifeCount();
+    public event LifeCount LifeCounted;
+
+    public IEnumerable ApplyDamage(int damage)
     {
-        public int health = 10;
-        [SerializeField]private GameObject[] drop;
-        private int life;
-        private Material takeDamage;
-        private NewControlSystem newControlSystem;
-        public BoolVariable isDead;
-        public BoolVariable test;
+        health -= damage;
+        for(int i = 0; i < renderer.Length; i++)
+        {
+            renderer[i].material.SetColor("_BaseColor", Color.red);
+        }
+
+        int r = UnityEngine.Random.Range(0, drop.Length);
+        if (health <= 0)
+        {
+            SceneManager.LoadScene("Menu");
+            isDead.Value = true;
+            Instantiate(drop[r], transform.position, Quaternion.identity);
+            gameObject.SetActive(false);
+        }
+
+        isDead.Value = false;
+        StartCoroutine(ChangeColor());
+
+        yield return null;
+    }
+
+    public int? GetHealth()
+    {
+        return health;
+    }
         
-        public delegate void LifeCount();
-        public event LifeCount LifeCounted;
-        void Start()
+    public IEnumerator ChangeColor()
+    {
+        yield return new WaitForSeconds(2f * Time.deltaTime);
+
+        for(int i = 0; i < renderer.Length; i++)
         {
-            takeDamage = GetComponent<MeshRenderer>().material;
-            newControlSystem = GetComponent<NewControlSystem>();
-            
-            LifeCounted += newControlSystem.OnLifeCounted;
-            life = health / 2;
+            renderer[i].material.SetColor("_BaseColor", Color.white);
         }
-
-        public IEnumerable ApplyDamage(int damage)
-        {
-            health -= damage;
-            Debug.Log("Vida do boss: " + health);
-
-            int r = UnityEngine.Random.Range(0, drop.Length);
-            if (health <= 0)
-            {
-                SceneManager.LoadScene("Menu");
-                isDead.Value = true;
-                Instantiate(drop[r], transform.position, Quaternion.identity);
-                gameObject.SetActive(false);
-            }
-
-            if (health <= 1500)
-            {
-                test.Value = true;
-            }
-
-            isDead.Value = false;
-            var sequence = DOTween.Sequence();
-            sequence.Append(takeDamage.DOColor(Color.red, 2f * Time.deltaTime))
-                .Append(takeDamage.DOColor(Color.white, 2f * Time.deltaTime));
-  
-            yield return null;
-        }
-
-        public int? GetHealth()
-        {
-            return health;
-        }
-        
     }
 }
+
