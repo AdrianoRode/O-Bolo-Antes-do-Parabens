@@ -57,7 +57,7 @@ public class BossChildControl : MonoBehaviour
             _navmesh.speed = 2.0f;
             var h = col.gameObject.Request<IInventory, GameObject>(_=>_.GetWeapon());
             GameObject go = Instantiate(h, localWeapon.position, transform.localRotation) as GameObject;
-            go.transform.parent = GameObject.Find("BossChild(Clone)").transform;
+            go.transform.parent = GameObject.Find("BossChild").transform;
             go.SetActive(true);
             _alreadyCollided = true;
         }

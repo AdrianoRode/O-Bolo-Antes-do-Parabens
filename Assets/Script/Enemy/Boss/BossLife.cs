@@ -1,18 +1,16 @@
-using System;
 using System.Collections;
 using UnityEngine;
-using DG.Tweening;
 using ScriptableObjectArchitecture;
 using UnityEngine.SceneManagement;
 
 public class BossLife : MonoBehaviour, IArmor
 {
-    public int health = 10;
+    public int health = 3000;
     [SerializeField]private GameObject[] drop;
     private int life;
     private NewControlSystem newControlSystem;
     public BoolVariable isDead;
-    public Renderer[] renderer;   
+    public new Renderer[] renderer;   
     public delegate void LifeCount();
     public event LifeCount LifeCounted;
 

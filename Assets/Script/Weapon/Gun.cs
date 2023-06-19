@@ -74,15 +74,17 @@ namespace Script.Weapon
                         StartCoroutine(SpawnTrail(trail, hit));
                     }  
                 }
-            
+
+                if(weapon.ammo <= 0)
+                {
+                    StartCoroutine(Reload().GetEnumerator());
+
+                }
+
                 canShoot = false;
                 StartCoroutine(Cadence().GetEnumerator());
             }
 
-            if(weapon.ammo <= 0)
-            {
-                StartCoroutine(Reload().GetEnumerator());
-            }
             yield return null;
         }
 
@@ -96,6 +98,7 @@ namespace Script.Weapon
 
         public IEnumerable Reload()
         {
+            canShoot = false;
             yield return new WaitForSeconds(100 * Time.deltaTime);
 
             int i = weapon.maxAmmo - weapon.ammo;
@@ -105,7 +108,7 @@ namespace Script.Weapon
             }
             weapon.ammo += i;
             weapon.reserveAmmo -= i;
-            
+            canShoot = true;
             yield return null;
         }
 

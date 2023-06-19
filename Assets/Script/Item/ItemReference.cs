@@ -43,7 +43,7 @@ namespace Script.Item
                 weapon.damage += 5;
                 damageText.text = "Dano: " + weapon.damage.ToString();
                 
-                if (weapon.damage > weapon.lastDamage)
+                if (weapon.damage >= weapon.lastDamage)
                 {
                     damageText.text = "Dano maximizado!: " + weapon.lastDamage.ToString();
                     weapon.damage = weapon.lastDamage;

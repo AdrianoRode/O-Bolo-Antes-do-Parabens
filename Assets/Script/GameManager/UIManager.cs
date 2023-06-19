@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using DG.Tweening;
 using Script.Player;
@@ -6,6 +5,8 @@ using Syrinj;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using Ez;
+
 public class UIManager : MonoBehaviour, IUI
 {
     [Header("Input Text")]
@@ -22,6 +23,8 @@ public class UIManager : MonoBehaviour, IUI
     [SerializeField]private TextMeshProUGUI coinTxt;
     [SerializeField]private TextMeshProUGUI ammoTxt;
     [SerializeField]private TextMeshProUGUI waterTxt;
+    [SerializeField]private Slider staminaBar;
+    [SerializeField]private Slider bossLifeBar;
     [SerializeField]private Image weaponIcon;
     [Inject]public GameManagerSO game;
 
@@ -31,14 +34,28 @@ public class UIManager : MonoBehaviour, IUI
     [SerializeField]private TextMeshProUGUI nextObjective;
 
     private PlayerLife pl;
+    private PlayerControl pc;
+    public GameObject boss;
     private bool shop;
+    private bool bossIsAlive;
     private int value;
 
     void Start()
     {
         pl = FindObjectOfType<PlayerLife>();
+        pc = FindObjectOfType<PlayerControl>();
         UpdatePlayerLifeTxt();
         EarnCoin();
+    }
+
+    void Update()
+    {
+        if(boss != null)
+        {
+            var bh = boss.Request<IArmor, int?>(_=>_.GetHealth());
+            bossLifeBar.value = (float)(bh ?? 0);
+        }    
+        staminaBar.value = pc.stamina;
     }
     public void UpdatePlayerLifeTxt()
     {
@@ -79,6 +96,10 @@ public class UIManager : MonoBehaviour, IUI
     public void CloseUI()
     {
         shop = false;
+    }
+    public void BossAlive()
+    {
+        bossIsAlive = true;
     }
 
     public void PausingGame()

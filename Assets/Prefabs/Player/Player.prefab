@@ -1244,6 +1244,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: {fileID: 11400000, guid: 82da23ac072195947b63a88e2aa7f2f7, type: 2}
+  child: []
 --- !u!114 &3376938879158239649
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1271,6 +1272,8 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 8b801063243e71a4fb94be990779c707, type: 3}
   - {fileID: 8300000, guid: ec367e8750490294791fda04cb222d27, type: 3}
   - {fileID: 8300000, guid: 32cb3899a0e41384fbcc8ee20dc425f3, type: 3}
+  stamina: 100
+  canControl: 1
 --- !u!95 &5943245897130871642
 Animator:
   serializedVersion: 5

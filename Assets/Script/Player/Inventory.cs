@@ -12,19 +12,27 @@ public class Inventory : MonoBehaviour, IInventory
 
     private int _currentIndex = 0;
     private int _currentWeapon = 0;
+    private PlayerControl pc;
     public GameObject actualWeapon;
+
+    void Start()
+    {
+        pc = FindObjectOfType<PlayerControl>();
+    }
 
     void Update()
     {
         float scroll = Input.GetAxis("Mouse ScrollWheel");
-
-        if(scroll > 0f)
+        if(pc.canControl)
         {
-            _currentIndex++;
-        }
-        else if (scroll < 0f)
-        {
-            _currentIndex--;
+            if(scroll > 0f)
+            {
+                _currentIndex++;
+            }
+            else if (scroll < 0f)
+            {
+                _currentIndex--;
+            }
         }
         
         if(_currentIndex > weapons.Count - 1)
@@ -88,4 +96,20 @@ public class Inventory : MonoBehaviour, IInventory
         return actualWeapon;
     }
 
+    public override bool Equals(object obj)
+    {
+        return obj is Inventory inventory &&
+               base.Equals(obj) &&
+               EqualityComparer<PlayerControl>.Default.Equals(pc, inventory.pc);
+    }
+
+    public override int GetHashCode()
+    {
+        return base.GetHashCode();
+    }
+
+    public override string ToString()
+    {
+        return base.ToString();
+    }
 }

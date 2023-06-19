@@ -1,6 +1,5 @@
 using Ez;
 using Script.Player;
-using ScriptableObjectArchitecture;
 using Syrinj;
 using UnityEngine;
 using UnityEngine.Events;
@@ -12,10 +11,12 @@ namespace Script.GameManager
     public class Game : MonoBehaviour
     {
         private bool objectiveCompleted;
-        private bool cutsceneStillNotPlayed = true;
+        private bool cutsceneStillNotPlayed1 = true;
+        private bool cutsceneStillNotPlayed2 = true;
         private int enemiesDied;
         private UIManager uiManager;
         private PlayerLife playerLife;
+        private GameObject houseParent;
         [Provides, SerializeField]private GameManagerSO gameSo;
         public PlayableDirector[] cutscene;
         public UnityEvent restartGame;
@@ -31,11 +32,13 @@ namespace Script.GameManager
         {
             uiManager = FindObjectOfType<UIManager>();
             playerLife = FindObjectOfType<PlayerLife>();
+            houseParent = GameObject.Find("House");
 
             var r = Random.Range(0, houses.Length);
-            var position = new Vector3(-6.4f, -0.44f, 0f);
-            Instantiate(houses[r], houses[r].transform.position, Quaternion.identity);
 
+            GameObject house = Instantiate(houses[r], houseParent.transform);
+            house.transform.parent = houseParent.transform;
+        
             TestNavmesh.Invoke();
         }
 
@@ -67,17 +70,19 @@ namespace Script.GameManager
             }
         }
 
-        void PlayCutscene()
+        void PlayCutscene(int n)
         {
             cutsceneOnPlay.Invoke();
-            cutscene[0].Play();
-            Invoke("FinishCutscene", (float)cutscene[0].duration);
+            cutscene[n].Play();
+            Invoke("FinishCutscene", (float)cutscene[n].duration);
         }
 
         void FinishCutscene()
         {
             cutsceneOnStop.Invoke();
         }
+
+
         void CheckPlayerLife()
         {
             var h = playerLife.gameObject.Request<IArmor, int?>(_ => _.GetHealth());
@@ -90,11 +95,10 @@ namespace Script.GameManager
         void CheckBossLife()
         {
             var h = bossLife.gameObject.Request<IArmor, int?>(_=>_.GetHealth());
-            if(h <= 1500)
+            if(h <= 1500 && cutsceneStillNotPlayed2)
             {
-                cutsceneOnPlay.Invoke();
-                cutscene[1].Play();
-                Invoke("FinishCutscene", (float)cutscene[1].duration);
+                PlayCutscene(1);
+                cutsceneStillNotPlayed2 = false;
             }
         }
     
@@ -124,10 +128,10 @@ namespace Script.GameManager
 
                     enemiesDied++;
                     
-                    if (enemiesDied >= 13 && cutsceneStillNotPlayed)
+                    if (enemiesDied >= 13 && cutsceneStillNotPlayed1)
                     {
-                        PlayCutscene();
-                        cutsceneStillNotPlayed = false;
+                        PlayCutscene(0);
+                        cutsceneStillNotPlayed1 = false;
                     }
                 }
                 

@@ -17,13 +17,14 @@ public class ObjectiveLogic : MonoBehaviour, IArmor
     public IEnumerable ApplyDamage(int damage)
     {
         health -= damage;
+        StartCoroutine(ChangeColor());
+
         if (health <= 0)
         {
             objectiveCompleted.Value = true;
             gameObject.SetActive(false);
         }
         renderer.material.SetColor("_BaseColor", Color.red);
-        StartCoroutine(ChangeColor());
         
         yield return null;
     }

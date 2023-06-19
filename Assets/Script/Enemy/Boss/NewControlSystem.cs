@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine.AI;
 using UnityEngine;
 using Ez;
@@ -23,7 +22,6 @@ public class NewControlSystem : MonoBehaviour
         _navMeshAgent = GetComponent<NavMeshAgent>();
         anim = GetComponent<Animator>();
         _player = GameObject.Find("Player");
-        StartCoroutine(SelectState());
     }
     void Update()
     {
@@ -38,17 +36,18 @@ public class NewControlSystem : MonoBehaviour
 
     void AttackingPlayer()
     {
-        /*if (Vector3.Distance(transform.position, _player.transform.position) < 3.2f && actualState == States.WALKING)
+        if (Vector3.Distance(transform.position, _player.transform.position) < 3.2f && actualState == States.WALKING)
         {
             _player.Send<IArmor>(_ => _.ApplyDamage(20));
             anim.SetTrigger("Attack");
         }
         else{
-            //anim.SetTrigger("Walk");
-        }*/
+            anim.SetTrigger("Walk");
+        }
     }
     public void EnableControl()
     {
+        StartCoroutine(SelectState());
         canControl = true;
     }
     public void DisableControl()
@@ -99,6 +98,7 @@ public class NewControlSystem : MonoBehaviour
 
             case States.ATTACKING1:
                 speed = 0f;
+                anim.SetTrigger("Idle");
                 _navMeshAgent.destination = target.position;
 
                 StartCoroutine(Attack1());
@@ -106,6 +106,7 @@ public class NewControlSystem : MonoBehaviour
 
             case States.ATTACKING2:
                 speed = 0f;
+                anim.SetTrigger("Idle");
                 for(int i = 0; i < 5; i++)
                 {
                     Instantiate(enemy, Spawn.position, Quaternion.identity);
@@ -132,6 +133,7 @@ public class NewControlSystem : MonoBehaviour
     IEnumerator Attack1()
     {
         yield return new WaitForSeconds(2f);
+        anim.SetTrigger("Walk");
         speed = 20f;
         yield return new WaitForSeconds(4f);
         actualState = States.WALKING;
@@ -142,6 +144,7 @@ public class NewControlSystem : MonoBehaviour
     IEnumerator Attack2()
     {
         yield return new WaitForSeconds(4f);
+        anim.SetTrigger("Walk");
         speed = 5f;
         actualState = States.WALKING;
 
