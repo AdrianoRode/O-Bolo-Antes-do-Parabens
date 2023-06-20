@@ -18923,7 +18923,7 @@ GameObject:
   - component: {fileID: 1231450581}
   m_Layer: 0
   m_Name: CM gameCam
-  m_TagString: Untagged
+  m_TagString: VirtualCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -20853,7 +20853,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Vida: 10'
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -20880,7 +20880,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 44.75
+  m_fontSize: 36
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -24408,6 +24408,9 @@ MonoBehaviour:
   objectiveAccomplished: {fileID: 1892945726}
   newObjectiveWarning: {fileID: 1790738538}
   nextObjective: {fileID: 1763685060}
+  fovSlider: {fileID: 0}
+  musicSlider: {fileID: 0}
+  sfxSlider: {fileID: 0}
   boss: {fileID: 7620524336048785077}
 --- !u!4 &1554524615
 Transform:
@@ -28473,7 +28476,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Brigadeiro: 10'
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -28500,7 +28503,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 44.75
+  m_fontSize: 36
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -29254,7 +29257,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1861678117}
-  m_LocalRotation: {x: 0.08838879, y: 0.2716759, z: -0.025066042, w: 0.95799345}
+  m_LocalRotation: {x: 0.088357076, y: 0.2728854, z: -0.025177645, w: 0.9576496}
   m_LocalPosition: {x: -58.256065, y: 11, z: -37.417435}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -34151,6 +34154,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 6790842888324693204, guid: b177efb0367587f43ab2f06b62cdc9a5, type: 3}
+      propertyPath: camera
+      value: 
+      objectReference: {fileID: 1231450581}
     - target: {fileID: 6790842888324693204, guid: b177efb0367587f43ab2f06b62cdc9a5, type: 3}
       propertyPath: bossLife
       value: 

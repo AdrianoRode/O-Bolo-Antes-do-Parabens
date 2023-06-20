@@ -13,6 +13,7 @@ TagManager:
   - Sink
   - Grass
   - Concrete
+  - VirtualCamera
   layers:
   - Default
   - TransparentFX

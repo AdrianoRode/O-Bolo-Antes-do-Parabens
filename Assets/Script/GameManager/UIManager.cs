@@ -32,13 +32,11 @@ public class UIManager : MonoBehaviour, IUI
     [SerializeField]private TextMeshProUGUI objectiveAccomplished;
     [SerializeField]private TextMeshProUGUI newObjectiveWarning;
     [SerializeField]private TextMeshProUGUI nextObjective;
-
     private PlayerLife pl;
     private PlayerControl pc;
     public GameObject boss;
     private bool shop;
     private bool bossIsAlive;
-    private int value;
 
     void Start()
     {
@@ -46,6 +44,7 @@ public class UIManager : MonoBehaviour, IUI
         pc = FindObjectOfType<PlayerControl>();
         UpdatePlayerLifeTxt();
         EarnCoin();
+      
     }
 
     void Update()

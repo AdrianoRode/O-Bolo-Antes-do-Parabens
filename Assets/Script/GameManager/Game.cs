@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 using UnityEngine.Playables;
+using Cinemachine;
 
 namespace Script.GameManager
 {
@@ -14,6 +15,7 @@ namespace Script.GameManager
         private bool cutsceneStillNotPlayed1 = true;
         private bool cutsceneStillNotPlayed2 = true;
         private int enemiesDied;
+        private static float fovCamera = 7f; 
         private UIManager uiManager;
         private PlayerLife playerLife;
         private GameObject houseParent;
@@ -27,6 +29,7 @@ namespace Script.GameManager
         public GameObject[] houses;
         public bool bossIsAlive = false;
         public BossLife bossLife;
+        public CinemachineVirtualCamera camera;
 
         void Start()
         {
@@ -38,26 +41,16 @@ namespace Script.GameManager
 
             GameObject house = Instantiate(houses[r], houseParent.transform);
             house.transform.parent = houseParent.transform;
-        
+
+            camera.m_Lens.OrthographicSize = fovCamera;
             TestNavmesh.Invoke();
         }
 
         void Update()
         {
-            //~~Código para teste, remover posteriormente!!!!~~
-            if(Input.GetKeyDown(KeyCode.F5))
-            {
-                SceneManager.LoadScene(gameSo.sceneThingy.BuildIndex);
-                gameSo.coins.Value = gameSo.coins.DefaultValue;
-                gameSo.life.Value = gameSo.life.DefaultValue;
-                gameSo.objectiveLogic.Value = gameSo.objectiveLogic.DefaultValue;
-            }
-
-            //~~Código para teste, remover posteriormente!!!!~~
-        
             PausingGame();
             CheckPlayerLife();
-            CheckBossLife();
+            //CheckBossLife();
             CheckGameState();
         }
 
@@ -101,7 +94,15 @@ namespace Script.GameManager
                 cutsceneStillNotPlayed2 = false;
             }
         }
-    
+
+        public void SetFullscreen(bool isFullscreen)
+        {
+            Screen.fullScreen = isFullscreen;
+        }
+        public void SetFov(float newFov)
+        {
+            fovCamera = newFov;
+        }
         public void RestartLevel()
         {
             SceneManager.LoadScene(gameSo.sceneThingy.BuildIndex);
